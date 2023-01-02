@@ -6,6 +6,8 @@ class GaitRecordManager: NSObject, ObservableObject {
     let motionManager = CMMotionManager()
     let pedometerManager = CMPedometer()
     let queue = OperationQueue()
+    var gaitCount: Int = 0
+    var motionSensorCount: Int = 0
     
     var gaitManager = GaitManager()
     @Published var gait: Gait? = nil
@@ -24,6 +26,7 @@ class GaitRecordManager: NSObject, ObservableObject {
         if (isStarted) {
             return
         }
+        gait = nil
         startUnixtime = unixtime()
         
         // モーションデータのListen開始
@@ -36,6 +39,7 @@ class GaitRecordManager: NSObject, ObservableObject {
                     if (unixtime() - self.startUnixtime <= 300) {
                         let _ = self.gaitManager.saveMotionSensor(
                             motion: data!, examId: examId, context: context)
+                        self.motionSensorCount += 1
                     }
                 }
             }
@@ -50,6 +54,7 @@ class GaitRecordManager: NSObject, ObservableObject {
                         startUnixtime: self.startUnixtime, endUnixtime: unixtime(), userId: userId,
                         context: context)
                     self.gait = gait
+                    self.gaitCount += 1
                 }
             }
         }
@@ -66,16 +71,6 @@ class GaitRecordManager: NSObject, ObservableObject {
         motionManager.stopDeviceMotionUpdates()
         pedometerManager.stopUpdates()
         isStarted = false
-    }
-    
-    /*
-     ローカルで保持しているGaitの削除処理
-     */
-    func refresh(context: NSManagedObjectContext) {
-        if (isStarted) {
-            return
-        }
-        gait = nil
     }
     
     /*

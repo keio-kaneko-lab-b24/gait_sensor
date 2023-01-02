@@ -1,8 +1,29 @@
 import SwiftUI
 
 struct HomeView: View {
+    let userId: String = "User_A"
     var body: some View {
         List {
+            // 歩行エクササイズ画面
+            NavigationLink {
+                GaitExerciseSettingView(userId: userId, examTypeId: 0)
+            } label: {
+                HStack {
+                    Image(systemName: "figure.walk")
+                    Text("ウォーキング")
+                }
+            }
+
+            // 歩行機能検査画面
+            NavigationLink {
+                GaitExamSelectView(userId: userId, examTypeId: 1)
+            } label: {
+                HStack {
+                    Image(systemName: "figure.walk")
+                    Text("歩行機能検査")
+                }
+            }
+            
             // 結果一覧表示画面
             NavigationLink {
                 ResultSelectView()

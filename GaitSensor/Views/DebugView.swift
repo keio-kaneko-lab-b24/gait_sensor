@@ -33,7 +33,6 @@ struct DebugView: View {
                 recordManager.start(userId: userId, examId: nextExamId, examTypeId: examTypeId, motionInterval: 0.1, context: context)
             } ){ Text("Start") }
             Button(action: { recordManager.stop() } ){ Text("Stop") }
-            Button(action: { recordManager.refresh(context: context) } ){ Text("Finish") }
             Button(action: { recordManager.delete(gaits: gaits, motionSensors: motionSensors, context: context) } ){ Text("Delete") }
         }.buttonStyle(.bordered)
         

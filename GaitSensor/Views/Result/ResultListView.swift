@@ -46,7 +46,8 @@ struct ResultListView: View {
     // ExamIdに紐づくGaitとMotionSensorを削除する。
     func delete(offsets: IndexSet) {
         offsets.forEach { index in
-            let exam_id = Int(gaits[index].exam_id)
+            let lastGaits = lastGaitByExamId(gaits: gaits)
+            let exam_id = Int(lastGaits[index].exam_id)
             gaitManager.deleteGait(gaits: gaits, examId: exam_id, context: context)
             gaitManager.deleteMotionSensor(motionSensors: motionSensors, examId: exam_id, context: context)
         }

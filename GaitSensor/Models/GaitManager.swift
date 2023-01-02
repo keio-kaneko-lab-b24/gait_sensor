@@ -17,7 +17,7 @@ struct GaitManager {
         context: NSManagedObjectContext
     ) -> Gait {
         let gait = Gait(context: context)
-        let deviceId: String = UIDevice.current.identifierForVendor!.uuidString
+        let deviceId: String = devideId()
         gait.exam_id = Int32(examId)
         gait.exam_type_id = Int32(examTypeId)
         gait.start_unixtime = Int32(startUnixtime)
