@@ -1,3 +1,4 @@
+import SwiftUI
 import CoreMotion
 import CoreData
 
@@ -68,12 +69,26 @@ class GaitRecordManager: NSObject, ObservableObject {
     }
     
     /*
-     センサーの保存処理
+     ローカルで保持しているGaitの削除処理
      */
-    func finish(context: NSManagedObjectContext) {
+    func refresh(context: NSManagedObjectContext) {
         if (isStarted) {
             return
         }
+        gait = nil
+    }
+    
+    /*
+     DB上の直近のGait,MotionSensorの削除削除
+     */
+    func delete(
+        gaits: FetchedResults<Gait>, motionSensors: FetchedResults<MotionSensor>,
+        context: NSManagedObjectContext
+    ) {
+        if (isStarted) {
+            return
+        }
+        gaitManager.deleteLast(gaits: gaits, motionSensors: motionSensors, context: context)
         gait = nil
     }
 }

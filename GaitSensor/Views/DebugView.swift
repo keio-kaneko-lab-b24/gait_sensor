@@ -28,10 +28,13 @@ struct DebugView: View {
         }
         
         HStack(){
-            Button(action: { recordManager.start(userId: userId, examId: getLastExamId()+1, examTypeId: examTypeId, motionInterval: 0.1, context: context)} ){ Text("Start") }
+            Button(action: {
+                let nextExamId = GaitManager().getLastExamId(gaits: gaits, motionSensors: motionSensors)+1
+                recordManager.start(userId: userId, examId: nextExamId, examTypeId: examTypeId, motionInterval: 0.1, context: context)
+            } ){ Text("Start") }
             Button(action: { recordManager.stop() } ){ Text("Stop") }
-            Button(action: { recordManager.finish(context: context) } ){ Text("Finish") }
-            Button(action: { deleteLast() } ){ Text("Delete") }
+            Button(action: { recordManager.refresh(context: context) } ){ Text("Finish") }
+            Button(action: { recordManager.delete(gaits: gaits, motionSensors: motionSensors, context: context) } ){ Text("Delete") }
         }.buttonStyle(.bordered)
         
         List {
@@ -50,46 +53,7 @@ struct DebugView: View {
         }
     }
     
-    /*
-     直近のGaitとMotionSensorを削除する
-     */
-    func deleteLast() {
-        let lastExamId = getLastExamId()
-        deleteGait(examId: lastExamId)
-        deleteMotionSensor(examId: lastExamId)
-    }
-    
-    /*
-     Gaitの削除
-     */
-    func deleteGait(examId: Int) {
-        for gait in gaits {
-            if (gait.exam_id == examId) {
-                context.delete(gait)
-            }
-        }
-        try? context.save()
-    }
-    
-    /*
-     MotionSensorの削除
-     */
-    func deleteMotionSensor(examId: Int) {
-        for motionSensor in motionSensors {
-            if (motionSensor.exam_id == examId) {
-                context.delete(motionSensor)
-            }
-        }
-        try? context.save()
-    }
-    
-    /*
-     最新のExamIdを取得
-     */
-    func getLastExamId() -> Int {
-        return Int(max(gaits.last?.exam_id ?? -1,
-            motionSensors.last?.exam_id ?? -1))
-    }
+
     
 }
 
