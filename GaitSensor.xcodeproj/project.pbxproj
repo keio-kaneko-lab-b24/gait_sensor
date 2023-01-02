@@ -12,6 +12,11 @@
 		175FEC8B2962D3F100E19831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 175FEC8A2962D3F100E19831 /* Assets.xcassets */; };
 		175FEC8E2962D3F100E19831 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 175FEC8D2962D3F100E19831 /* Preview Assets.xcassets */; };
 		175FEC932962D3F100E19831 /* GaitSensor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 175FEC912962D3F100E19831 /* GaitSensor.xcdatamodeld */; };
+		175FEC9B2962DA8300E19831 /* Persistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FEC9A2962DA8300E19831 /* Persistent.swift */; };
+		175FEC9E2962DB3900E19831 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FEC9D2962DB3900E19831 /* DebugView.swift */; };
+		175FECA12962DE2F00E19831 /* GaitRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECA02962DE2F00E19831 /* GaitRecordManager.swift */; };
+		175FECA32962DEE100E19831 /* GaitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECA22962DEE100E19831 /* GaitManager.swift */; };
+		175FECA62962E10500E19831 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECA52962E10500E19831 /* DateUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +26,11 @@
 		175FEC8A2962D3F100E19831 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		175FEC8D2962D3F100E19831 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		175FEC922962D3F100E19831 /* GaitSensor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GaitSensor.xcdatamodel; sourceTree = "<group>"; };
+		175FEC9A2962DA8300E19831 /* Persistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistent.swift; sourceTree = "<group>"; };
+		175FEC9D2962DB3900E19831 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
+		175FECA02962DE2F00E19831 /* GaitRecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaitRecordManager.swift; sourceTree = "<group>"; };
+		175FECA22962DEE100E19831 /* GaitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaitManager.swift; sourceTree = "<group>"; };
+		175FECA52962E10500E19831 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,9 +63,11 @@
 		175FEC852962D3EF00E19831 /* GaitSensor */ = {
 			isa = PBXGroup;
 			children = (
+				175FECA42962E0F600E19831 /* Utils */,
+				175FEC9F2962DDF900E19831 /* Models */,
+				175FEC9C2962DAC000E19831 /* Views */,
 				175FEC992962D84200E19831 /* Databases */,
 				175FEC862962D3EF00E19831 /* GaitSensorApp.swift */,
-				175FEC882962D3EF00E19831 /* ContentView.swift */,
 				175FEC8A2962D3F100E19831 /* Assets.xcassets */,
 				175FEC8C2962D3F100E19831 /* Preview Content */,
 			);
@@ -74,8 +86,35 @@
 			isa = PBXGroup;
 			children = (
 				175FEC912962D3F100E19831 /* GaitSensor.xcdatamodeld */,
+				175FEC9A2962DA8300E19831 /* Persistent.swift */,
 			);
 			path = Databases;
+			sourceTree = "<group>";
+		};
+		175FEC9C2962DAC000E19831 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				175FEC882962D3EF00E19831 /* ContentView.swift */,
+				175FEC9D2962DB3900E19831 /* DebugView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		175FEC9F2962DDF900E19831 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				175FECA02962DE2F00E19831 /* GaitRecordManager.swift */,
+				175FECA22962DEE100E19831 /* GaitManager.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		175FECA42962E0F600E19831 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				175FECA52962E10500E19831 /* DateUtil.swift */,
+			);
+			path = Utils;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -148,7 +187,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				175FEC9B2962DA8300E19831 /* Persistent.swift in Sources */,
+				175FECA12962DE2F00E19831 /* GaitRecordManager.swift in Sources */,
+				175FEC9E2962DB3900E19831 /* DebugView.swift in Sources */,
+				175FECA32962DEE100E19831 /* GaitManager.swift in Sources */,
 				175FEC892962D3EF00E19831 /* ContentView.swift in Sources */,
+				175FECA62962E10500E19831 /* DateUtil.swift in Sources */,
 				175FEC932962D3F100E19831 /* GaitSensor.xcdatamodeld in Sources */,
 				175FEC872962D3EF00E19831 /* GaitSensorApp.swift in Sources */,
 			);
@@ -282,6 +326,7 @@
 				DEVELOPMENT_TEAM = QUYRZ8YY36;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMotionUsageDescription = "歩数や移動距離の取得に使用されます";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -312,6 +357,7 @@
 				DEVELOPMENT_TEAM = QUYRZ8YY36;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMotionUsageDescription = "歩数や移動距離の取得に使用されます";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

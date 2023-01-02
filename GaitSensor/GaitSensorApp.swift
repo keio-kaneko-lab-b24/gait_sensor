@@ -9,10 +9,10 @@ import SwiftUI
 
 @main
 struct GaitSensorApp: App {
-
+    let persistentController = PersistentController()
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environment(\.managedObjectContext, persistentController.container.viewContext)
         }
     }
 }
