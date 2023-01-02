@@ -11,7 +11,6 @@
 		175FEC892962D3EF00E19831 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FEC882962D3EF00E19831 /* ContentView.swift */; };
 		175FEC8B2962D3F100E19831 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 175FEC8A2962D3F100E19831 /* Assets.xcassets */; };
 		175FEC8E2962D3F100E19831 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 175FEC8D2962D3F100E19831 /* Preview Assets.xcassets */; };
-		175FEC902962D3F100E19831 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FEC8F2962D3F100E19831 /* Persistence.swift */; };
 		175FEC932962D3F100E19831 /* GaitSensor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 175FEC912962D3F100E19831 /* GaitSensor.xcdatamodeld */; };
 /* End PBXBuildFile section */
 
@@ -21,7 +20,6 @@
 		175FEC882962D3EF00E19831 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		175FEC8A2962D3F100E19831 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		175FEC8D2962D3F100E19831 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		175FEC8F2962D3F100E19831 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		175FEC922962D3F100E19831 /* GaitSensor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GaitSensor.xcdatamodel; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -55,11 +53,10 @@
 		175FEC852962D3EF00E19831 /* GaitSensor */ = {
 			isa = PBXGroup;
 			children = (
+				175FEC992962D84200E19831 /* Databases */,
 				175FEC862962D3EF00E19831 /* GaitSensorApp.swift */,
 				175FEC882962D3EF00E19831 /* ContentView.swift */,
 				175FEC8A2962D3F100E19831 /* Assets.xcassets */,
-				175FEC8F2962D3F100E19831 /* Persistence.swift */,
-				175FEC912962D3F100E19831 /* GaitSensor.xcdatamodeld */,
 				175FEC8C2962D3F100E19831 /* Preview Content */,
 			);
 			path = GaitSensor;
@@ -71,6 +68,14 @@
 				175FEC8D2962D3F100E19831 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		175FEC992962D84200E19831 /* Databases */ = {
+			isa = PBXGroup;
+			children = (
+				175FEC912962D3F100E19831 /* GaitSensor.xcdatamodeld */,
+			);
+			path = Databases;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -143,7 +148,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				175FEC902962D3F100E19831 /* Persistence.swift in Sources */,
 				175FEC892962D3EF00E19831 /* ContentView.swift in Sources */,
 				175FEC932962D3F100E19831 /* GaitSensor.xcdatamodeld in Sources */,
 				175FEC872962D3EF00E19831 /* GaitSensorApp.swift in Sources */,
@@ -203,7 +207,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -257,7 +261,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -283,6 +287,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -312,6 +317,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
