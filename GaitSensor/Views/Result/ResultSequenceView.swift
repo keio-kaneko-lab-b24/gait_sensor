@@ -30,7 +30,7 @@ struct ResultSequenceView: View {
                 Text("どれだけのエネルギーを消費したか").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary)
                 HStack {
                     Text("\(Int(totalCalory(gaits: gaitsSorted)))").font(.largeTitle)
-                    Text("kCal")
+                    Text("kcal")
                 }
             }.padding()
             

@@ -33,7 +33,7 @@ struct GaitExerciseView: View {
             // 歩行開始前: カウントダウン
             if currentTime < 0 {
                 Group {
-                    Text("\(-1 * currentTime)").font(.largeTitle).bold()
+                    Text("\(-1 * currentTime)").font(.system(size: 100, weight: .bold))
                 }.onChange(of: currentTime) { _ in
                     speechText(text: "\(-1 * currentTime)")
                 }.onAppear{
@@ -45,8 +45,8 @@ struct GaitExerciseView: View {
             if currentTime >= 0 {
                 Group {
                     Text("ウォーキング").font(.title).padding()
-                    Text("\(timeToString(time: currentTime))").font(.largeTitle).bold()
-                    Text("\(String(floor(recordManager.gait?.gait_distance ?? 0))) M").font(.largeTitle).bold()
+                    Text("\(timeToString(time: currentTime))").font(.system(size: 100, weight: .bold))
+                    Text("\(String(floor(recordManager.gait?.gait_distance ?? 0))) M").font(.system(size: 100, weight: .bold))
                 }.onAppear{
                     speechText(text: "ウォーキングを開始します")
                     let nextExamId = GaitManager().getLastExamId(gaits: gaits, motionSensors: motionSensors) + 1
@@ -58,20 +58,8 @@ struct GaitExerciseView: View {
              
             // 歩行中のみ: 「一時停止」と「終了」ボタンを表示
             if currentTime >= 0 && currentTime < (minutes*60+seconds) {
+                
                 HStack {
-//                    if pauseTimer == false {
-//                        Button(action: {
-//                            timer.upstream.connect().cancel()
-//                            pauseTimer = true
-//                        } ){Text("一時中断")}.buttonStyle(.bordered)
-//                    } else {
-//                        Button(action: {
-//                            timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-//                            pauseTimer = false
-//                        } ){Text("再開")}.buttonStyle(.bordered)
-//                    }
-                    
-                    
                     Button(action: {
                         recordManager.stop()
                         if recordManager.gaitCount == 0 {
@@ -80,17 +68,17 @@ struct GaitExerciseView: View {
                             isNextButton = true
                         }
                     } ){
-                        Text("終了")
+                        Text("終了").frame(maxWidth: .infinity, maxHeight: 40)
                     }
                     .buttonStyle(.bordered)
                     .alert("歩行データはありません。\n設定画面に戻ります。", isPresented: $showAlert2) {
                         Button("OK") {
                             speechText(text: "ウォーキングを終了します")
                             presentationMode.wrappedValue.dismiss()
-                            
                         }
                     }
-                }
+                    
+                }.padding()
             }
             
             // 歩行終了後：「データを削除」と「保存」ボタンを表示
@@ -101,7 +89,7 @@ struct GaitExerciseView: View {
                     Button(action: {
                         showAlert1 = true
                     } ){
-                        Text("データを削除")
+                        Text("データを削除").frame(maxWidth: .infinity, maxHeight: 40)
                     }
                     .buttonStyle(.bordered)
                     .alert("注意", isPresented: $showAlert1) {
@@ -120,7 +108,7 @@ struct GaitExerciseView: View {
                             isNextButton = true
                         }
                     } ){
-                        Text("保存")
+                        Text("保存").frame(maxWidth: .infinity, maxHeight: 40)
                     }
                     .buttonStyle(.bordered)
                     .onAppear {
@@ -132,7 +120,7 @@ struct GaitExerciseView: View {
                     } message: {
                         Text("歩行データを取得できませんでした。\n再度やりなおしてください。")
                     }
-                }
+                }.padding()
                 
             }
         }.onReceive(timer) { _ in

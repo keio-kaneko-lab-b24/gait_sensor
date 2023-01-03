@@ -72,7 +72,7 @@ struct ResultView: View {
                     HStack {
                         Text("推定消費エネルギー")
                         Spacer()
-                        Text("\(String(format: "%.1f", gait!.gait_energy)) kCal")
+                        Text("\(String(format: "%.1f", gait!.gait_energy)) kcal")
                     }
                     
                     HStack {
