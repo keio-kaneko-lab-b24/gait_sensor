@@ -27,7 +27,7 @@ struct GaitManager {
         gait.gait_stride = Double(truncating: pedometer.distance ?? 0) / Double(truncating: pedometer.numberOfSteps)
         gait.gait_speed = Double(truncating: pedometer.distance ?? 0) / Double(endUnixtime - startUnixtime)
         gait.gait_period = Int32(endUnixtime - startUnixtime)
-        gait.gait_energy = calcEnergy()
+        gait.gait_energy = calcEnergy(speed: gait.gait_speed, weight: Double(weight) ?? 0, hour: Double(gait.gait_period) / 3600)
         gait.user_id = userId
         gait.user_device_id = deviceId
         gait.user_age = Int32(age) ?? 0
@@ -58,13 +58,6 @@ struct GaitManager {
         motionSensor.roll = motion.attitude.roll
         try? context.save()
         return motionSensor
-    }
-    
-    /*
-     カロリーの計算
-     */
-    private func calcEnergy() -> Double {
-        return 0
     }
     
     /*

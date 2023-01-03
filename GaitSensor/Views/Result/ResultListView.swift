@@ -3,7 +3,7 @@ import SwiftUI
 struct ResultListView: View {
     @Environment(\.managedObjectContext) var context
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.exam_id)])
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.exam_id), SortDescriptor(\.end_unixtime)])
     var gaits: FetchedResults<Gait>
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.exam_id), SortDescriptor(\.unixtime)])
@@ -20,7 +20,7 @@ struct ResultListView: View {
                 Group {
                     if gait.exam_type_id == examTypeId {
                         NavigationLink {
-                            ResultView(gait: gait)
+                            ResultView(gait: gait, showEnergy: (examTypeId == 0))
                         } label: {
                             Text(unixtimeToDateString(unixtime: Int(gait.start_unixtime), short: true))
                             Image(systemName: "figure.walk")

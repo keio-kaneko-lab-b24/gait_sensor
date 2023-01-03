@@ -2,10 +2,15 @@ import SwiftUI
 
 struct ResultView: View {
     let gait: Gait?
+    var showEnergy: Bool = false
     var showFinishButton: Bool = false
     @State var isFinishButton = false
     
     var body: some View {
+        
+        if showFinishButton {
+            Text("記録が完了しました")
+        }
 
         List {
             if gait != nil {
@@ -58,6 +63,20 @@ struct ResultView: View {
                     Spacer()
                     Text("\(String(format: "%.1f", gait!.gait_distance)) メートル")
                 }
+                
+                if showEnergy {
+                    HStack {
+                        Text("推定消費エネルギー")
+                        Spacer()
+                        Text("\(String(format: "%.1f", gait!.gait_energy)) kCal")
+                    }
+                    
+                    HStack {
+                        Text("推定燃焼脂肪量")
+                        Spacer()
+                        Text("\(String(format: "%.1f", gait!.gait_energy / 9)) g")
+                    }
+                }
             }
             
             if showFinishButton {
@@ -67,7 +86,7 @@ struct ResultView: View {
                     Text("ホームに戻る").bold()
                 }
             }
-        }
+        }.navigationBarBackButtonHidden(showFinishButton)
         
         NavigationLink(
             destination: HomeView(),

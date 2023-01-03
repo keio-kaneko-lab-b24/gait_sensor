@@ -4,7 +4,7 @@ import CoreData
 struct DebugView: View {
     @Environment(\.managedObjectContext) var context
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.exam_id)])
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.exam_id), SortDescriptor(\.end_unixtime)])
     var gaits: FetchedResults<Gait>
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.exam_id), SortDescriptor(\.unixtime)])

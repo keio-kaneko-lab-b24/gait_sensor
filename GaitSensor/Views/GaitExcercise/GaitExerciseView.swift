@@ -11,17 +11,18 @@ struct GaitExerciseView: View {
     let seconds: Int
     let motionInterval: Double = 0.1
     let deviceId = devideId()
-    let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     let synthesizer = AVSpeechSynthesizer()
     
+    @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     @State var currentTime: Int = -3 // カウントダウン分を引いている
+    @State var pauseTimer = false
     @State var showAlert1 = false
     @State var showAlert2 = false
     @State var isBackButton = false
     @State var isNextButton = false
     @ObservedObject var recordManager = GaitRecordManager()
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.exam_id)])
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.exam_id), SortDescriptor(\.end_unixtime)])
     var gaits: FetchedResults<Gait>
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.exam_id), SortDescriptor(\.unixtime)])
@@ -48,17 +49,52 @@ struct GaitExerciseView: View {
                     Text("\(String(floor(recordManager.gait?.gait_distance ?? 0))) M").font(.largeTitle)
                 }.onAppear{
                     speechText(text: "ウォーキングを開始します")
-                    let nextExamId = GaitManager().getLastExamId(gaits: gaits, motionSensors: motionSensors)+1
+                    let nextExamId = GaitManager().getLastExamId(gaits: gaits, motionSensors: motionSensors) + 1
                     recordManager.start(
                         userId: userId, examId: nextExamId, examTypeId: examTypeId,
                         motionInterval: 0.1, context: context)
                 }
             }
+             
+            // 歩行中のみ: 「一時停止」と「終了」ボタンを表示
+            if currentTime >= 0 && currentTime < (minutes*60+seconds) {
+                HStack {
+//                    if pauseTimer == false {
+//                        Button(action: {
+//                            timer.upstream.connect().cancel()
+//                            pauseTimer = true
+//                        } ){Text("一時中断")}.buttonStyle(.bordered)
+//                    } else {
+//                        Button(action: {
+//                            timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
+//                            pauseTimer = false
+//                        } ){Text("再開")}.buttonStyle(.bordered)
+//                    }
+                    
+                    
+                    Button(action: {
+                        recordManager.stop()
+                        if recordManager.gaitCount == 0 {
+                            showAlert2 = true
+                        } else {
+                            isNextButton = true
+                        }
+                        speechText(text: "ウォーキングを終了します")
+                    } ){
+                        Text("終了")
+                    }
+                    .buttonStyle(.bordered)
+                    .alert("歩行データはありません。\n設定画面に戻ります。", isPresented: $showAlert2) {
+                        Button("OK") { presentationMode.wrappedValue.dismiss() }
+                    }
+                }
+            }
             
-            // 歩行終了後：「最初から」と「保存」ボタンを表示
+            // 歩行終了後：「データを削除」と「保存」ボタンを表示
             if currentTime >= (minutes*60+seconds) {
                 
                 HStack {
+                    
                     Button(action: {
                         showAlert1 = true
                     } ){
@@ -71,28 +107,28 @@ struct GaitExerciseView: View {
                             recordManager.delete(gaits: gaits, motionSensors: motionSensors, context: context)
                         }
                     } message: {
-                        Text("削除したデータは元に戻せません。削除しますか？")
+                        Text("削除したデータは元に戻せません。\n削除しますか？")
                     }
-                }
-                
-                Button(action: {
-                    if recordManager.gaitCount == 0 {
-                        showAlert2 = true
-                    } else {
-                        isNextButton = true
+                    
+                    Button(action: {
+                        if recordManager.gaitCount == 0 {
+                            showAlert2 = true
+                        } else {
+                            isNextButton = true
+                        }
+                    } ){
+                        Text("保存")
                     }
-                } ){
-                    Text("保存")
-                }
-                .buttonStyle(.bordered)
-                .onAppear {
-                    speechText(text: "ウォーキングを終了します")
-                    recordManager.stop()
-                }
-                .alert("歩行データがありません", isPresented: $showAlert2) {
-                    Button("OK") { /* Do Nothing */}
-                } message: {
-                    Text("歩行データを取得できませんでした。再度やりなおしてください。")
+                    .buttonStyle(.bordered)
+                    .onAppear {
+                        speechText(text: "ウォーキングを終了します")
+                        recordManager.stop()
+                    }
+                    .alert("歩行データがありません", isPresented: $showAlert2) {
+                        Button("OK") { /* Do Nothing */}
+                    } message: {
+                        Text("歩行データを取得できませんでした。\n再度やりなおしてください。")
+                    }
                 }
                 
             }
@@ -105,7 +141,7 @@ struct GaitExerciseView: View {
         
         NavigationLink(
             destination: ResultView(
-                gait: gaits.last,
+                gait: recordManager.gait, showEnergy: true,
                 showFinishButton: true),
             isActive: $isNextButton) { EmptyView() }
     }

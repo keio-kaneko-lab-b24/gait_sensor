@@ -21,7 +21,7 @@ struct GaitExamView: View {
     @State var isNextButton = false
     @ObservedObject var recordManager = GaitRecordManager()
     
-    @FetchRequest(sortDescriptors: [SortDescriptor(\.exam_id)])
+    @FetchRequest(sortDescriptors: [SortDescriptor(\.exam_id), SortDescriptor(\.end_unixtime)])
     var gaits: FetchedResults<Gait>
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.exam_id), SortDescriptor(\.unixtime)])
@@ -75,7 +75,7 @@ struct GaitExamView: View {
                             recordManager.delete(gaits: gaits, motionSensors: motionSensors, context: context)
                         }
                     } message: {
-                        Text("今回の記録は削除されます。よろしいですか？")
+                        Text("今回の記録は削除されます。\nよろしいですか？")
                     }
                     
                     Button(action: {
@@ -95,7 +95,7 @@ struct GaitExamView: View {
                     .alert("歩行データがありません", isPresented: $showAlert2) {
                         Button("OK") { /* Do Nothing */}
                     } message: {
-                        Text("歩行データを取得できませんでした。再度やりなおしてください。")
+                        Text("歩行データを取得できませんでした。\n再度やりなおしてください。")
                     }
                 }
                 
@@ -110,7 +110,7 @@ struct GaitExamView: View {
         
         NavigationLink(
             destination: ResultView(
-                gait: gaits.last,
+                gait: recordManager.gait,
                 showFinishButton: true),
             isActive: $isNextButton) { EmptyView() }
     }

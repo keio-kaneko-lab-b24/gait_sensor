@@ -21,12 +21,15 @@ class GaitRecordManager: NSObject, ObservableObject {
      */
     func start(
         userId: String, examId: Int, examTypeId: Int,
-        motionInterval: Double, context: NSManagedObjectContext
+        motionInterval: Double, context: NSManagedObjectContext,
+        resetData: Bool = true
     ) {
         if (isStarted) {
             return
         }
-        gait = nil
+        if (resetData) {
+            gait = nil
+        }
         startUnixtime = unixtime()
         
         // モーションデータのListen開始
