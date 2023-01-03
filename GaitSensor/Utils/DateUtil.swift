@@ -7,6 +7,10 @@ func unixtime() -> Int {
     return Int(NSDate().timeIntervalSince1970)
 }
 
+func unixtimeToDate(unixtime: Int) -> Date {
+    return NSDate(timeIntervalSince1970: TimeInterval(unixtime)) as Date
+}
+
 func unixtimeToDateString(unixtime: Int, short: Bool = false) -> String {
     let date = NSDate(timeIntervalSince1970: TimeInterval(unixtime))
     let dateFormatter = DateFormatter()

@@ -12,41 +12,54 @@ struct ResultListView: View {
     let gaitManager = GaitManager()
     
     let examTypeId: Int
+    @State var isSelectedButton = false
     
     var body: some View {
         Text("左スワイプでデータを削除できます。")
         List {
-            ForEach(lastGaitByExamId(gaits: gaits)) { gait in
-                Group {
-                    if gait.exam_type_id == examTypeId {
-                        NavigationLink {
-                            ResultView(gait: gait, showEnergy: (examTypeId == 0))
-                        } label: {
-                            Text(unixtimeToDateString(unixtime: Int(gait.start_unixtime), short: true))
-                            Image(systemName: "figure.walk")
-                            Text("\(gait.gait_steps) 歩")
-                        }
-                    }
+            ForEach(lastGaitByExamId(gaits: gaits, examTypeId: examTypeId)) { gait in
+                NavigationLink {
+                    ResultView(gait: gait, showEnergy: (examTypeId == 0))
+                } label: {
+                    Text(unixtimeToDateString(unixtime: Int(gait.start_unixtime), short: true))
+                    Image(systemName: "figure.walk")
+                    Text("\(gait.gait_steps) 歩")
                 }
             }.onDelete(perform: delete)
+        }.toolbar {
+            ToolbarItem {
+                Button {
+                    isSelectedButton = true
+                } label: {
+                    Text("時系列で表示")
+                }
+            }
         }
+        
+        NavigationLink(
+            destination: ResultSequenceView(gaits: lastGaitByExamId(gaits: gaits, examTypeId: examTypeId)),
+            isActive: $isSelectedButton) { EmptyView() }
     }
     
     // Gaitは取得したタイミングで全部保存されているので、ExamIdごとに最後のみを使用する
-    func lastGaitByExamId(gaits: FetchedResults<Gait>) -> [Gait] {
+    // また、同時にexamTypeIdも絞り込む
+    func lastGaitByExamId(gaits: FetchedResults<Gait>, examTypeId: Int) -> [Gait] {
         let gaitDict = Dictionary(grouping: gaits, by: { $0.exam_id })
         var gaitList: [Gait] = []
         for elem in gaitDict {
-            gaitList.append(elem.value.last!)
+            let gait = elem.value.last!
+            if gait.exam_type_id == examTypeId {
+                gaitList.append(gait)
+            }
         }
         gaitList.sort(by: {$0.start_unixtime > $1.start_unixtime})
         return gaitList
     }
-    
+
     // ExamIdに紐づくGaitとMotionSensorを削除する。
     func delete(offsets: IndexSet) {
         offsets.forEach { index in
-            let lastGaits = lastGaitByExamId(gaits: gaits)
+            let lastGaits = lastGaitByExamId(gaits: gaits, examTypeId: examTypeId)
             let exam_id = Int(lastGaits[index].exam_id)
             gaitManager.deleteGait(gaits: gaits, examId: exam_id, context: context)
             gaitManager.deleteMotionSensor(motionSensors: motionSensors, examId: exam_id, context: context)

@@ -27,6 +27,7 @@
 		175FECBC296329AE00E19831 /* GaitExamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECBB296329AE00E19831 /* GaitExamView.swift */; };
 		175FECBE29632A3B00E19831 /* OtherUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECBD29632A3B00E19831 /* OtherUtils.swift */; };
 		175FECC0296333B900E19831 /* GaitExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECBF296333B900E19831 /* GaitExerciseView.swift */; };
+		175FECE12963DA6500E19831 /* ResultSequenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECE02963DA6500E19831 /* ResultSequenceView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +52,7 @@
 		175FECBB296329AE00E19831 /* GaitExamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaitExamView.swift; sourceTree = "<group>"; };
 		175FECBD29632A3B00E19831 /* OtherUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUtils.swift; sourceTree = "<group>"; };
 		175FECBF296333B900E19831 /* GaitExerciseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaitExerciseView.swift; sourceTree = "<group>"; };
+		175FECE02963DA6500E19831 /* ResultSequenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSequenceView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +150,7 @@
 				175FECAD29631DA300E19831 /* ResultSelectView.swift */,
 				175FECAF29631DDA00E19831 /* ResultListView.swift */,
 				175FECB3296326CF00E19831 /* ResultView.swift */,
+				175FECE02963DA6500E19831 /* ResultSequenceView.swift */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -260,6 +263,7 @@
 				175FECBA296328A600E19831 /* GaitExerciseSettingView.swift in Sources */,
 				175FEC892962D3EF00E19831 /* ContentView.swift in Sources */,
 				175FECBC296329AE00E19831 /* GaitExamView.swift in Sources */,
+				175FECE12963DA6500E19831 /* ResultSequenceView.swift in Sources */,
 				175FECA62962E10500E19831 /* DateUtil.swift in Sources */,
 				175FECB82963286E00E19831 /* GaitExamSelectView.swift in Sources */,
 				175FEC932962D3F100E19831 /* GaitSensor.xcdatamodeld in Sources */,
