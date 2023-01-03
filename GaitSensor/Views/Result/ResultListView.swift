@@ -37,7 +37,9 @@ struct ResultListView: View {
         }
         
         NavigationLink(
-            destination: ResultSequenceView(gaits: lastGaitByExamId(gaits: gaits, examTypeId: examTypeId)),
+            destination: ResultSequenceView(
+                gaits: lastGaitByExamId(gaits: gaits, examTypeId: examTypeId),
+                showEnergy: (examTypeId == 0)),
             isActive: $isSelectedButton) { EmptyView() }
     }
     
