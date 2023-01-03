@@ -33,7 +33,7 @@ struct GaitExerciseView: View {
             // 歩行開始前: カウントダウン
             if currentTime < 0 {
                 Group {
-                    Text("\(-1 * currentTime)").font(.largeTitle)
+                    Text("\(-1 * currentTime)").font(.largeTitle).bold()
                 }.onChange(of: currentTime) { _ in
                     speechText(text: "\(-1 * currentTime)")
                 }.onAppear{
@@ -44,9 +44,9 @@ struct GaitExerciseView: View {
             // 歩行中: データの取得と画面更新
             if currentTime >= 0 {
                 Group {
-                    Text("ウォーキング").font(.title)
-                    Text("\(timeToString(time: currentTime))").font(.largeTitle)
-                    Text("\(String(floor(recordManager.gait?.gait_distance ?? 0))) M").font(.largeTitle)
+                    Text("ウォーキング").font(.title).padding()
+                    Text("\(timeToString(time: currentTime))").font(.largeTitle).bold()
+                    Text("\(String(floor(recordManager.gait?.gait_distance ?? 0))) M").font(.largeTitle).bold()
                 }.onAppear{
                     speechText(text: "ウォーキングを開始します")
                     let nextExamId = GaitManager().getLastExamId(gaits: gaits, motionSensors: motionSensors) + 1
@@ -79,13 +79,16 @@ struct GaitExerciseView: View {
                         } else {
                             isNextButton = true
                         }
-                        speechText(text: "ウォーキングを終了します")
                     } ){
                         Text("終了")
                     }
                     .buttonStyle(.bordered)
                     .alert("歩行データはありません。\n設定画面に戻ります。", isPresented: $showAlert2) {
-                        Button("OK") { presentationMode.wrappedValue.dismiss() }
+                        Button("OK") {
+                            speechText(text: "ウォーキングを終了します")
+                            presentationMode.wrappedValue.dismiss()
+                            
+                        }
                     }
                 }
             }
@@ -137,7 +140,7 @@ struct GaitExerciseView: View {
             if currentTime >= (minutes*60+seconds) {
                 timer.upstream.connect().cancel()
             }
-        }
+        }.navigationBarBackButtonHidden(true)
         
         NavigationLink(
             destination: ResultView(

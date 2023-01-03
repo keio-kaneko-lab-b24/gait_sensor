@@ -8,10 +8,14 @@ struct ResultView: View {
     
     var body: some View {
         
-        if showFinishButton {
-            Text("記録が完了しました")
+        VStack {
+            if showFinishButton {
+                Text("記録が完了しました")
+            } else {
+                Text("記録詳細").font(.title2).bold()
+            }
         }
-
+        
         List {
             if gait != nil {
                 HStack {
@@ -27,7 +31,7 @@ struct ResultView: View {
                 }
                 
                 HStack {
-                    Text("エクササイズ時間")
+                    Text("歩行時間")
                     Spacer()
                     Text("\(Int(gait!.gait_period)) 秒")
                 }

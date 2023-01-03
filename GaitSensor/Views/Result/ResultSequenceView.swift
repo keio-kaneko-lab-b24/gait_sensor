@@ -3,28 +3,40 @@ import Charts
 
 struct ResultSequenceView: View {
     let gaits: [Gait]
-    var showEnergy: Bool = false
+    var examTypeId: Int
     
     var body: some View {
         var gaitsSorted = gaits.sorted(by: {$0.exam_id < $1.exam_id})
         ScrollView(.vertical) {
             
-            if showEnergy {
-                // 消費エネルギー
-                VStack {
-                    Text("累計消費エネルギー").font(.title2).bold()
-                    Text("どれだけのエネルギーを消費したか").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary)
-                    HStack {
-                        Text("\(Int(totalCalory(gaits: gaitsSorted)))").font(.largeTitle)
-                        Text("kCal")
-                    }
-                    
-                }
+            if examTypeId == 0 {
+                Text("ウォーキングの記録").font(.title).bold()
+            } else if examTypeId == 1 {
+                Text("歩行機能検査の記録").font(.title).bold()
             }
+            // 消費エネルギー
+            VStack {
+                Text("累計歩数").font(.title3).bold()
+                Text("どれだけの歩数歩いたか").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary)
+                HStack {
+                    Text("\(totalSteps(gaits: gaitsSorted))").font(.largeTitle)
+                    Text("歩")
+                }
+            }.padding()
+            
+            // 消費エネルギー
+            VStack {
+                Text("累計消費エネルギー").font(.title3).bold()
+                Text("どれだけのエネルギーを消費したか").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary)
+                HStack {
+                    Text("\(Int(totalCalory(gaits: gaitsSorted)))").font(.largeTitle)
+                    Text("kCal")
+                }
+            }.padding()
             
             // 歩行速度
             VStack {
-                Text("歩行速度").font(.title2).bold()
+                Text("歩行速度").font(.title3).bold()
                 Text("1分あたりに何メートル歩いたか").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary)
                 Chart(gaitsSorted.suffix(10)) { gait in
                     BarMark (
@@ -38,7 +50,7 @@ struct ResultSequenceView: View {
             
             // 歩幅
             VStack {
-                Text("歩幅").font(.title2).bold()
+                Text("歩幅").font(.title3).bold()
                 Text("1歩あたりの歩幅は何メートルか").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary)
                 Chart(gaitsSorted.suffix(10)) { gait in
                     BarMark (
@@ -52,7 +64,7 @@ struct ResultSequenceView: View {
             
             // 歩行率
             VStack {
-                Text("歩行率").font(.title2).bold()
+                Text("歩行率").font(.title3).bold()
                 Text("1分あたり何歩歩いたか").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary)
                 Chart(gaitsSorted.suffix(10)) { gait in
                     BarMark (
@@ -79,5 +91,13 @@ struct ResultSequenceView: View {
             totalCalory += gait.gait_energy
         }
         return totalCalory
+    }
+    
+    func totalSteps(gaits: [Gait]) -> Int {
+        var totalSteps: Int = 0
+        for gait in gaits {
+            totalSteps += Int(gait.gait_steps)
+        }
+        return totalSteps
     }
 }

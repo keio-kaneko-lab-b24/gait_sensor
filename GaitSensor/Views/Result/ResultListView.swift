@@ -15,15 +15,26 @@ struct ResultListView: View {
     @State var isSelectedButton = false
     
     var body: some View {
-        Text("左スワイプでデータを削除できます。")
+        // 消費エネルギー
+        VStack {
+            if examTypeId == 0 {
+                Text("ウォーキングの記録").font(.title2).bold()
+            } else if examTypeId == 1 {
+                Text("歩行機能検査の記録").font(.title2).bold()
+            }
+            Text("左スワイプでデータを削除できます").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary)
+        }
+        
         List {
             ForEach(lastGaitByExamId(gaits: gaits, examTypeId: examTypeId)) { gait in
-                NavigationLink {
-                    ResultView(gait: gait, showEnergy: (examTypeId == 0))
-                } label: {
-                    Text(unixtimeToDateString(unixtime: Int(gait.start_unixtime), short: true))
-                    Image(systemName: "figure.walk")
-                    Text("\(gait.gait_steps) 歩")
+                HStack {
+                    NavigationLink {
+                        ResultView(gait: gait, showEnergy: (examTypeId == 0))
+                    } label: {
+                        Text(unixtimeToDateString(unixtime: Int(gait.start_unixtime), short: true))
+                        Image(systemName: "figure.walk")
+                        Text("\(gait.gait_steps) 歩")
+                    }
                 }
             }.onDelete(perform: delete)
         }.toolbar {
@@ -31,7 +42,11 @@ struct ResultListView: View {
                 Button {
                     isSelectedButton = true
                 } label: {
-                    Text("時系列で表示")
+                    HStack{
+                        Text("時系列で表示")
+                        Image(systemName: "chart.xyaxis.line")
+                    }
+                    
                 }
             }
         }
@@ -39,7 +54,7 @@ struct ResultListView: View {
         NavigationLink(
             destination: ResultSequenceView(
                 gaits: lastGaitByExamId(gaits: gaits, examTypeId: examTypeId),
-                showEnergy: (examTypeId == 0)),
+                examTypeId: examTypeId),
             isActive: $isSelectedButton) { EmptyView() }
     }
     

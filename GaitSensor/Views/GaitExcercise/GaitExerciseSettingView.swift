@@ -9,9 +9,10 @@ struct GaitExerciseSettingView: View {
     @State var showAlert = false
     
     var body: some View {
-        Text("歩行エクササイズ").font(.title)
-        Spacer()
-        Text("転倒には十分に留意してください。")
+        VStack {
+            Text("ウォーキング").font(.title2).bold()
+            Text("転倒には十分に留意してください\n音声ガイドを有効にするにはマナーモードを解除してください").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary).multilineTextAlignment(.center)
+        }
         
         Form {
             Section {

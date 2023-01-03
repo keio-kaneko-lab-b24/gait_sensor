@@ -8,16 +8,14 @@ struct GaitExamSettingView: View {
     @State var isSelectedButton = false
     
     var body: some View {
-        Group {
+        VStack {
             if examSpeedTypeId == 0 {
-                Text("最大速度歩行").font(.title)
-                Spacer()
-                Text("可能な限り速いペースで歩いてください。\n転倒には十分に留意してください。")
+                Text("最大速度歩行").font(.title2).bold()
+                Text("可能な限り速いペースで歩いてください。\n転倒には十分に留意してください。").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary).multilineTextAlignment(.center)
             }
             if examSpeedTypeId == 1 {
-                Text("快適速度歩行").font(.title)
-                Spacer()
-                Text("いつも歩いているペースで歩いてください。")
+                Text("快適速度歩行").font(.title2).bold()
+                Text("可能な限り速いペースで歩いてください。\n転倒には十分に留意してください。").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary).multilineTextAlignment(.center)
             }
         }
         Form {

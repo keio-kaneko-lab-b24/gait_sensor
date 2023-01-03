@@ -4,7 +4,7 @@ struct HomeView: View {
     let userId: String = "User_A"
     var body: some View {
         List {
-            // 歩行エクササイズ画面
+            // ウォーキング画面
             NavigationLink {
                 GaitExerciseSettingView(userId: userId, examTypeId: 0)
             } label: {
@@ -29,7 +29,7 @@ struct HomeView: View {
                 ResultSelectView()
             } label: {
                 HStack {
-                    Image(systemName: "pencil")
+                    Image(systemName: "chart.bar.doc.horizontal")
                     Text("結果表示")
                 }
             }
@@ -49,11 +49,13 @@ struct HomeView: View {
                 DebugView()
             } label: {
                 HStack {
-                    Image(systemName: "pencil")
+                    Image(systemName: "chart.bar.doc.horizontal")
                     Text("デバッグ")
                 }
             }.foregroundColor(.gray)
-        }.navigationBarTitle(Text("ホーム"))
+        }
+        .navigationBarTitle(Text("ホーム"), displayMode: .automatic)
+        .navigationBarBackButtonHidden(true)
     }
 }
 

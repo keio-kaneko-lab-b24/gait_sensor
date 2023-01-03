@@ -32,7 +32,7 @@ struct GaitExamView: View {
             // 歩行開始前: カウントダウン
             if currentTime < 0 {
                 Group {
-                    Text("\(-1 * currentTime)").font(.largeTitle)
+                    Text("\(-1 * currentTime)").font(.largeTitle).bold()
                 }.onChange(of: currentTime) { _ in
                     speechText(text: "\(-1 * currentTime)")
                 }.onAppear{
@@ -44,12 +44,12 @@ struct GaitExamView: View {
             if currentTime >= 0 {
                 Group {
                     if examSpeedTypeId == 0 {
-                        Text("最大速度歩行").font(.title)
+                        Text("最大速度歩行").font(.title).padding()
                     }
                     if examSpeedTypeId == 1 {
-                        Text("快適速度歩行").font(.title)
+                        Text("快適速度歩行").font(.title).padding()
                     }
-                    Text("\(String(floor(recordManager.gait?.gait_distance ?? 0))) M").font(.largeTitle)
+                    Text("\(String(floor(recordManager.gait?.gait_distance ?? 0))) M").font(.largeTitle).bold()
                 }.onAppear{
                     speechText(text: "検査を開始します")
                     let nextExamId = GaitManager().getLastExamId(gaits: gaits, motionSensors: motionSensors)+1
@@ -57,20 +57,38 @@ struct GaitExamView: View {
                         userId: userId, examId: nextExamId, examTypeId: examTypeId,
                         motionInterval: 0.1, context: context)
                 }
+                
+                Button(action: {
+                    recordManager.stop()
+                    if recordManager.gaitCount == 0 {
+                        showAlert2 = true
+                    } else {
+                        isNextButton = true
+                    }
+                } ){
+                    Text("終了")
+                }
+                .buttonStyle(.bordered)
+                .alert("歩行データはありません。\n設定画面に戻ります。", isPresented: $showAlert2) {
+                    Button("OK") {
+                        speechText(text: "検査を終了します")
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
             }
             
-            // 歩行終了後：「最初から」と「保存」ボタンを表示
+            // 歩行終了後：「保存」ボタンを表示
             if recordManager.gait?.gait_distance ?? 0 >= Double(meter) {
                 
                 HStack {
                     Button(action: {
                         showAlert1 = true
                     } ){
-                        Text("最初から")
+                        Text("データ削除")
                     }
                     .buttonStyle(.bordered)
                     .alert("注意", isPresented: $showAlert1) {
-                        Button("最初から", role: .destructive) {
+                        Button("データ削除", role: .destructive) {
                             presentationMode.wrappedValue.dismiss()
                             recordManager.delete(gaits: gaits, motionSensors: motionSensors, context: context)
                         }
@@ -107,6 +125,7 @@ struct GaitExamView: View {
                 timer.upstream.connect().cancel()
             }
         }
+        .navigationBarBackButtonHidden(true)
         
         NavigationLink(
             destination: ResultView(

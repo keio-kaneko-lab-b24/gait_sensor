@@ -37,7 +37,7 @@ class GaitRecordManager: NSObject, ObservableObject {
             motionManager.deviceMotionUpdateInterval = motionInterval
             motionManager.startDeviceMotionUpdates(to: self.queue){
                 (data: CMDeviceMotion?, error: Error?) in
-                if (error == nil) {
+                if (error == nil && data != nil) {
                     // 5分以上稼働している場合はセンサーの取得を停止する
                     if (unixtime() - self.startUnixtime <= 300) {
                         let _ = self.gaitManager.saveMotionSensor(
@@ -51,13 +51,17 @@ class GaitRecordManager: NSObject, ObservableObject {
         if (CMPedometer.isStepCountingAvailable()) {
             pedometerManager.startUpdates(from: NSDate() as Date) {
                 (data: CMPedometerData?, error: Error?) in
-                if (error == nil) {
+                if (error == nil && data != nil) {
                     let gait = self.gaitManager.saveGait(
                         pedometer: data!, examId: examId, examTypeId: examTypeId,
                         startUnixtime: self.startUnixtime, endUnixtime: unixtime(), userId: userId,
                         context: context)
-                    self.gait = gait
+                    // Published変数なのでmainスレッドで変更する必要あり
+                    DispatchQueue.main.async {
+                        self.gait = gait
+                    }
                     self.gaitCount += 1
+                    print("gait is updated. \(gait.end_unixtime)")
                 }
             }
         }
