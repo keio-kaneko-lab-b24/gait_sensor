@@ -30,15 +30,19 @@ struct GaitExerciseSettingView: View {
                 }
                 .pickerStyle(.automatic)
                 
-                Button {
+            } footer: {
+                Button(action: {
                     if minutes == 0 && seconds == 0 {
                         showAlert = true
                     } else {
                         isSelectedButton = true
                     }
-                } label: {
-                    Text("検査開始").bold()
+                } ){
+                    Text("ウォーキング開始").frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40).bold()
                 }
+                .buttonStyle(.borderedProminent)
+                .tint(.blue)
+                .padding()
                 .alert("時間が0秒です", isPresented: $showAlert) {
                     Button("OK") { /* Do Nothing */}
                 } message: {

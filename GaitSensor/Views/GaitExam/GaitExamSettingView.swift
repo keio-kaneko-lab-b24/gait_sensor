@@ -18,6 +18,8 @@ struct GaitExamSettingView: View {
                 Text("可能な限り速いペースで歩いてください。\n転倒には十分に留意してください。").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary).multilineTextAlignment(.center)
             }
         }
+        
+
         Form {
             Section {
                 Picker(selection: $meter, label: Text("歩行距離")) {
@@ -28,15 +30,18 @@ struct GaitExamSettingView: View {
                     Text("50 m").tag(50)
                 }
                 .pickerStyle(.automatic)
-                
-                Button {
-                    isSelectedButton = true
-                } label: {
-                    Text("検査開始").bold()
-                }
+        } footer: {
+            Button(action: {
+                isSelectedButton = true
+            } ){
+                Text("検査開始").frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40).bold()
             }
+            .buttonStyle(.borderedProminent)
+            .tint(.blue)
+            .padding()
         }
-
+            
+        }
         NavigationLink(
             destination: GaitExamView(
                 userId: userId, examTypeId: examTypeId,

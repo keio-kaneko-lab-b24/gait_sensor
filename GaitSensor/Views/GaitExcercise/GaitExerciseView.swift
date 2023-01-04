@@ -68,7 +68,7 @@ struct GaitExerciseView: View {
                             isNextButton = true
                         }
                     } ){
-                        Text("終了").frame(maxWidth: .infinity, maxHeight: 40)
+                        Text("終了").frame(maxWidth: .infinity, maxHeight: 40).bold()
                     }
                     .buttonStyle(.bordered)
                     .alert("歩行データはありません。\n設定画面に戻ります。", isPresented: $showAlert2) {
@@ -89,7 +89,7 @@ struct GaitExerciseView: View {
                     Button(action: {
                         showAlert1 = true
                     } ){
-                        Text("データを削除").frame(maxWidth: .infinity, maxHeight: 40)
+                        Text("データを削除").frame(maxWidth: .infinity, maxHeight: 40).bold()
                     }
                     .buttonStyle(.bordered)
                     .alert("注意", isPresented: $showAlert1) {
@@ -108,9 +108,10 @@ struct GaitExerciseView: View {
                             isNextButton = true
                         }
                     } ){
-                        Text("保存").frame(maxWidth: .infinity, maxHeight: 40)
+                        Text("保存").frame(maxWidth: .infinity, maxHeight: 40).bold()
                     }
-                    .buttonStyle(.bordered)
+                    .buttonStyle(.borderedProminent)
+                    .tint(.blue)
                     .onAppear {
                         speechText(text: "ウォーキングを終了します")
                         recordManager.stop()
@@ -118,7 +119,7 @@ struct GaitExerciseView: View {
                     .alert("歩行データがありません", isPresented: $showAlert2) {
                         Button("OK") { /* Do Nothing */}
                     } message: {
-                        Text("歩行データを取得できませんでした。\n再度やりなおしてください。")
+                        Text("歩行データを取得できませんでした。\nやりなおしてください。")
                     }
                 }.padding()
                 
