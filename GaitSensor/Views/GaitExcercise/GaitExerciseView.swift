@@ -56,7 +56,7 @@ struct GaitExerciseView: View {
                 }
             }
              
-            // 歩行中のみ: 「一時停止」と「終了」ボタンを表示
+            // 歩行中のみ: 「終了」ボタンを表示
             if currentTime >= 0 && currentTime < (minutes*60+seconds) {
                 
                 HStack {
@@ -65,6 +65,7 @@ struct GaitExerciseView: View {
                         if recordManager.gaitCount == 0 {
                             showAlert2 = true
                         } else {
+                            speechText(text: "ウォーキングを終了します")
                             isNextButton = true
                         }
                     } ){

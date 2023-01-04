@@ -67,6 +67,7 @@ struct GaitExamView: View {
                         if recordManager.gaitCount == 0 {
                             showAlert2 = true
                         } else {
+                            speechText(text: "ウォーキングを終了します")
                             isNextButton = true
                         }
                     } ){
@@ -97,7 +98,9 @@ struct GaitExamView: View {
                     .alert("注意", isPresented: $showAlert1) {
                         Button("データ削除", role: .destructive) {
                             presentationMode.wrappedValue.dismiss()
-                            recordManager.delete(gaits: gaits, motionSensors: motionSensors, context: context)
+                            if recordManager.gaitCount >= 1 {
+                                recordManager.delete(gaits: gaits, motionSensors: motionSensors, context: context)
+                            }
                         }
                     } message: {
                         Text("今回の記録は削除されます。\nよろしいですか？")
