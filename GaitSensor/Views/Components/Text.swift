@@ -2,7 +2,7 @@ import SwiftUI
 
 extension Text {
     func extraLarge() -> some View {
-        self.font(.system(size: 100, weight: .bold))
+        self.font(.system(size: 100)).fontWeight(.heavy)
     }
     
     func large() -> some View {
@@ -18,7 +18,7 @@ extension Text {
     }
     
     func explain() -> some View {
-        self.font(.footnote)
+        self.font(.subheadline)
             .fontWeight(.semibold)
             .foregroundColor(.secondary)
             .multilineTextAlignment(.center)

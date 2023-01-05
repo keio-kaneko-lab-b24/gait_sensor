@@ -8,11 +8,12 @@ struct ResultView: View {
     @State var isFinishButton = false
     
     var body: some View {
-        VStack {
-            if showFinishButton {
-                Text("記録が完了しました").title().padding()
-            }
-        }.padding()
+        
+        if showFinishButton {
+            VStack {
+                Text("記録が完了しました").title()
+            }.padding()
+        }
 
         List {
             Section {
@@ -45,26 +46,26 @@ struct ResultView: View {
                         Text("歩行率")
                         Spacer()
                         let step_rate = 60 * Double(gait!.gait_steps) / Double(gait!.gait_period)
-                        Text("1分あたり \(String(format: "%.1f", step_rate)) 歩")
+                        Text("\(String(format: "%.1f", step_rate)) 歩/分")
                     }
                     
                     HStack {
                         Text("歩行速度")
                         Spacer()
                         let speed = 60 * gait!.gait_speed
-                        Text("1分あたり \(String(format: "%.1f", speed)) メートル")
+                        Text("\(String(format: "%.1f", speed)) m/分")
                     }
                     
                     HStack {
                         Text("歩幅")
                         Spacer()
-                        Text("\(String(format: "%.1f", gait!.gait_stride)) メートル")
+                        Text("\(String(format: "%.1f", gait!.gait_stride)) m")
                     }
                     
                     HStack {
                         Text("歩行距離")
                         Spacer()
-                        Text("\(String(format: "%.1f", gait!.gait_distance)) メートル")
+                        Text("\(String(format: "%.1f", gait!.gait_distance)) m")
                     }
                     
                     if showEnergy {

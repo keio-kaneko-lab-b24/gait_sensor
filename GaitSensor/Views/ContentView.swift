@@ -1,6 +1,8 @@
 import SwiftUI
 
 struct HomeView: View {
+    @AppStorage(wrappedValue: "",  "weight") private var weight: String
+    
     let userId: String = "User_A"
     var body: some View {
         List {
@@ -43,6 +45,9 @@ struct HomeView: View {
                     HStack {
                         Image(systemName: "gearshape").icon()
                         Text("設定")
+                        if weight == "" {
+                            (Text(Image(systemName: "exclamationmark.circle")) + Text("体重が未設定")).foregroundColor(Color.orange)
+                        }
                     }
                 }
                 

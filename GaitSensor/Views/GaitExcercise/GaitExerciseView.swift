@@ -4,12 +4,13 @@ import AVFoundation
 struct GaitExerciseView: View {
     @Environment(\.managedObjectContext) var context
     @Environment(\.presentationMode) var presentationMode: Binding<PresentationMode>
+    @AppStorage(wrappedValue: 10,  "sensorHz") private var sensorHz: Int
+    @AppStorage(wrappedValue: 5,  "voiceSpeed") private var voiceSpeed: Int
     
     let userId: String
     let examTypeId: Int
     let minutes: Int
     let seconds: Int
-    let motionInterval: Double = 0.1
     let deviceId = devideId()
     let synthesizer = AVSpeechSynthesizer()
     
@@ -44,15 +45,16 @@ struct GaitExerciseView: View {
             // 歩行中: データの取得と画面更新
             if currentTime >= 0 {
                 Group {
-                    Text("ウォーキング").title().padding()
+                    Text("ウォーキング").title()
+                    Text("目標時間 \(timeToString(time: minutes*60+seconds))").explain()
                     Text("\(timeToString(time: currentTime))").extraLarge()
-                    Text("\(String(floor(recordManager.gait?.gait_distance ?? 0))) M").extraLarge()
+                    Text("\(String(Int(recordManager.gait?.gait_distance ?? 0))) m").extraLarge()
                 }.onAppear{
                     speechText(text: "ウォーキングを開始します")
                     let nextExamId = GaitManager().getLastExamId(gaits: gaits, motionSensors: motionSensors) + 1
                     recordManager.start(
                         userId: userId, examId: nextExamId, examTypeId: examTypeId,
-                        motionInterval: 0.1, context: context)
+                        motionInterval: 1.0 / Double(sensorHz), context: context)
                 }
             }
              
@@ -113,6 +115,7 @@ struct GaitExerciseView: View {
                     }
                     .primary()
                     .onAppear {
+                        timer.upstream.connect().cancel()
                         speechText(text: "ウォーキングを終了します")
                         recordManager.stop()
                     }
@@ -126,9 +129,6 @@ struct GaitExerciseView: View {
             }
         }.onReceive(timer) { _ in
             currentTime += 1
-            if currentTime >= (minutes*60+seconds) {
-                timer.upstream.connect().cancel()
-            }
         }.navigationBarBackButtonHidden(true)
         
         NavigationLink(
@@ -141,7 +141,7 @@ struct GaitExerciseView: View {
     func speechText(text: String) {
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: "ja-JP")
-        utterance.rate = 0.5
+        utterance.rate = Float(Double(voiceSpeed) / 10)
         self.synthesizer.speak(utterance)
     }
 }

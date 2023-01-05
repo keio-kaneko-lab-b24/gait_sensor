@@ -9,7 +9,6 @@ extension View {
     func style() -> some View {
         self.listStyle(.automatic)
             .environment(\.defaultMinListRowHeight, 60)
-            .font(.system(.body, design: .rounded))
             .fontWeight(.medium)
             .opacity(0.8)
     }
