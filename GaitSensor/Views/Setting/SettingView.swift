@@ -9,8 +9,8 @@ struct SettingView: View {
     
     var body: some View {
         VStack {
-            Text("登録情報").font(.title2).bold()
-            Text("登録情報の編集ができます。\n体重は消費エネルギーの計算に使用されます。").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary).multilineTextAlignment(.center)
+            Text("登録情報").title()
+            Text("登録情報の編集ができます。\n体重は消費エネルギーの計算に使用されます。").explain()
 
             List {
                 HStack {

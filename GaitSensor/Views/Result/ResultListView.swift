@@ -18,12 +18,12 @@ struct ResultListView: View {
         // 消費エネルギー
         VStack {
             if examTypeId == 0 {
-                Text("ウォーキングの記録").font(.title2).bold()
+                Text("ウォーキングの記録").title()
             } else if examTypeId == 1 {
-                Text("歩行機能検査の記録").font(.title2).bold()
+                Text("歩行機能検査の記録").title()
             }
-            Text("左スワイプでデータを削除できます").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary)
-        }
+            Text("左スワイプでデータを削除できます").explain()
+        }.padding()
         
         List {
             ForEach(lastGaitByExamId(gaits: gaits, examTypeId: examTypeId)) { gait in
@@ -32,7 +32,7 @@ struct ResultListView: View {
                         ResultView(gait: gait, showEnergy: (examTypeId == 0))
                     } label: {
                         Text(unixtimeToDateString(unixtime: Int(gait.start_unixtime), short: true))
-                        Image(systemName: "figure.walk")
+                        Image(systemName: "figure.walk").icon()
                         Text("\(gait.gait_steps) 歩")
                     }
                 }
@@ -43,8 +43,8 @@ struct ResultListView: View {
                     isSelectedButton = true
                 } label: {
                     HStack{
-                        Text("時系列で表示")
-                        Image(systemName: "chart.xyaxis.line")
+                        Text("時系列で表示").regular()
+                        Image(systemName: "chart.xyaxis.line").icon()
                     }
                     
                 }

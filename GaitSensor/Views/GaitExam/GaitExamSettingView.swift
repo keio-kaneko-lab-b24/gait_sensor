@@ -4,20 +4,20 @@ struct GaitExamSettingView: View {
     let userId: String
     let examTypeId: Int
     let examSpeedTypeId: Int
-    @State private var meter = 10
+    @AppStorage(wrappedValue: 10,  "examMeter") private var meter: Int
     @State var isSelectedButton = false
     
     var body: some View {
         VStack {
             if examSpeedTypeId == 0 {
-                Text("最大速度歩行").font(.title2).bold()
-                Text("可能な限り速いペースで歩いてください。\n転倒には十分に留意してください。").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary).multilineTextAlignment(.center)
+                Text("最大速度歩行").title()
+                Text("可能な限り速いペースで歩いてください。\n転倒には十分に留意してください。").explain()
             }
             if examSpeedTypeId == 1 {
-                Text("快適速度歩行").font(.title2).bold()
-                Text("可能な限り速いペースで歩いてください。\n転倒には十分に留意してください。").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary).multilineTextAlignment(.center)
+                Text("快適速度歩行").title()
+                Text("いつものペースで歩いてください。\n転倒には十分に留意してください。").explain()
             }
-        }
+        }.padding()
         
 
         Form {
@@ -34,10 +34,9 @@ struct GaitExamSettingView: View {
             Button(action: {
                 isSelectedButton = true
             } ){
-                Text("検査開始").frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40).bold()
+                Text("検査開始").button()
             }
-            .buttonStyle(.borderedProminent)
-            .tint(.blue)
+            .primary()
             .padding()
         }
             

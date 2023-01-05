@@ -29,6 +29,10 @@
 		175FECC0296333B900E19831 /* GaitExerciseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECBF296333B900E19831 /* GaitExerciseView.swift */; };
 		175FECE12963DA6500E19831 /* ResultSequenceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECE02963DA6500E19831 /* ResultSequenceView.swift */; };
 		175FECE42964490700E19831 /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECE32964490700E19831 /* FileManager.swift */; };
+		175FECE729666EFA00E19831 /* Button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECE629666EFA00E19831 /* Button.swift */; };
+		175FECE929666F4100E19831 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECE829666F4100E19831 /* Text.swift */; };
+		175FECEB2966797100E19831 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECEA2966797100E19831 /* View.swift */; };
+		175FECF0296690D700E19831 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECEF296690D700E19831 /* Image.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +60,10 @@
 		175FECE02963DA6500E19831 /* ResultSequenceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSequenceView.swift; sourceTree = "<group>"; };
 		175FECE2296409B200E19831 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		175FECE32964490700E19831 /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileManager.swift; sourceTree = "<group>"; };
+		175FECE629666EFA00E19831 /* Button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Button.swift; sourceTree = "<group>"; };
+		175FECE829666F4100E19831 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
+		175FECEA2966797100E19831 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
+		175FECEF296690D700E19831 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -120,10 +128,11 @@
 		175FEC9C2962DAC000E19831 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				175FECE529666EBA00E19831 /* Components */,
 				175FECAC29631D7200E19831 /* GaitExcercise */,
 				175FECAB29631D6100E19831 /* GaitExam */,
-				175FECAA29631D5C00E19831 /* Setting */,
 				175FECA929631D5600E19831 /* Result */,
+				175FECAA29631D5C00E19831 /* Setting */,
 				175FEC882962D3EF00E19831 /* ContentView.swift */,
 				175FEC9D2962DB3900E19831 /* DebugView.swift */,
 			);
@@ -185,6 +194,17 @@
 				175FECBF296333B900E19831 /* GaitExerciseView.swift */,
 			);
 			path = GaitExcercise;
+			sourceTree = "<group>";
+		};
+		175FECE529666EBA00E19831 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				175FECEA2966797100E19831 /* View.swift */,
+				175FECE629666EFA00E19831 /* Button.swift */,
+				175FECE829666F4100E19831 /* Text.swift */,
+				175FECEF296690D700E19831 /* Image.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -258,13 +278,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				175FEC9B2962DA8300E19831 /* Persistent.swift in Sources */,
+				175FECF0296690D700E19831 /* Image.swift in Sources */,
 				175FECA12962DE2F00E19831 /* GaitRecordManager.swift in Sources */,
 				175FEC9E2962DB3900E19831 /* DebugView.swift in Sources */,
 				175FECC0296333B900E19831 /* GaitExerciseView.swift in Sources */,
 				175FECB029631DDA00E19831 /* ResultListView.swift in Sources */,
 				175FECA32962DEE100E19831 /* GaitManager.swift in Sources */,
 				175FECBE29632A3B00E19831 /* OtherUtils.swift in Sources */,
+				175FECE729666EFA00E19831 /* Button.swift in Sources */,
 				175FECB4296326CF00E19831 /* ResultView.swift in Sources */,
+				175FECEB2966797100E19831 /* View.swift in Sources */,
 				175FECBA296328A600E19831 /* GaitExerciseSettingView.swift in Sources */,
 				175FEC892962D3EF00E19831 /* ContentView.swift in Sources */,
 				175FECBC296329AE00E19831 /* GaitExamView.swift in Sources */,
@@ -276,6 +299,7 @@
 				175FECAE29631DA300E19831 /* ResultSelectView.swift in Sources */,
 				175FEC872962D3EF00E19831 /* GaitSensorApp.swift in Sources */,
 				175FECB22963200200E19831 /* SettingView.swift in Sources */,
+				175FECE929666F4100E19831 /* Text.swift in Sources */,
 				175FECB62963285500E19831 /* GaitExamSettingView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -409,6 +433,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GaitSensor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "歩行アプリ";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSMotionUsageDescription = "歩数や移動距離の取得に使用されます";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
@@ -442,6 +468,8 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = GaitSensor/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "歩行アプリ";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.healthcare-fitness";
 				INFOPLIST_KEY_LSSupportsOpeningDocumentsInPlace = YES;
 				INFOPLIST_KEY_NSMotionUsageDescription = "歩数や移動距離の取得に使用されます";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;

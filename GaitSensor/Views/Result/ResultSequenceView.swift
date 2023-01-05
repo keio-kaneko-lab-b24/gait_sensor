@@ -9,35 +9,38 @@ struct ResultSequenceView: View {
         var gaitsSorted = gaits.sorted(by: {$0.exam_id < $1.exam_id})
         ScrollView(.vertical) {
             
-            if examTypeId == 0 {
-                Text("ウォーキングの記録").font(.title).bold()
-            } else if examTypeId == 1 {
-                Text("歩行機能検査の記録").font(.title).bold()
-            }
+            VStack {
+                if examTypeId == 0 {
+                    Text("ウォーキングの記録").title()
+                } else if examTypeId == 1 {
+                    Text("歩行機能検査の記録").title()
+                }
+            }.padding()
+            
             // 消費エネルギー
             VStack {
-                Text("累計歩数").font(.title3).bold()
-                Text("どれだけの歩数歩いたか").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary)
+                Text("累計歩数").title2()
+                Text("どれだけの歩数歩いたか").explain()
                 HStack {
-                    Text("\(totalSteps(gaits: gaitsSorted))").font(.largeTitle)
+                    Text("\(totalSteps(gaits: gaitsSorted))").large()
                     Text("歩")
                 }
             }.padding()
             
             // 消費エネルギー
             VStack {
-                Text("累計消費エネルギー").font(.title3).bold()
-                Text("どれだけのエネルギーを消費したか").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary)
+                Text("累計消費エネルギー").title2()
+                Text("どれだけのエネルギーを消費したか").explain()
                 HStack {
-                    Text("\(Int(totalCalory(gaits: gaitsSorted)))").font(.largeTitle)
+                    Text("\(Int(totalCalory(gaits: gaitsSorted)))").large()
                     Text("kcal")
                 }
             }.padding()
             
             // 歩行速度
             VStack {
-                Text("歩行速度").font(.title3).bold()
-                Text("1分あたりに何メートル歩いたか").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary)
+                Text("歩行速度").title2()
+                Text("1分あたりに何メートル歩いたか").explain()
                 Chart(gaitsSorted.suffix(10)) { gait in
                     BarMark (
                         x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
@@ -50,8 +53,8 @@ struct ResultSequenceView: View {
             
             // 歩幅
             VStack {
-                Text("歩幅").font(.title3).bold()
-                Text("1歩あたりの歩幅は何メートルか").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary)
+                Text("歩幅").title2()
+                Text("1歩あたりの歩幅は何メートルか").explain()
                 Chart(gaitsSorted.suffix(10)) { gait in
                     BarMark (
                         x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
@@ -64,8 +67,8 @@ struct ResultSequenceView: View {
             
             // 歩行率
             VStack {
-                Text("歩行率").font(.title3).bold()
-                Text("1分あたり何歩歩いたか").fontWeight(.semibold).font(.footnote).foregroundColor(.secondary)
+                Text("歩行率").title2()
+                Text("1分あたり何歩歩いたか").explain()
                 Chart(gaitsSorted.suffix(10)) { gait in
                     BarMark (
                         x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),

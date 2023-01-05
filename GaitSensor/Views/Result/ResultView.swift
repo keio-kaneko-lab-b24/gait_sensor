@@ -1,21 +1,19 @@
 import SwiftUI
 
 struct ResultView: View {
+    
     let gait: Gait?
     var showEnergy: Bool = false
     var showFinishButton: Bool = false
     @State var isFinishButton = false
     
     var body: some View {
-        
         VStack {
             if showFinishButton {
-                Text("記録が完了しました").font(.title2).bold()
-            } else {
-                Text("記録詳細").font(.title2).bold()
+                Text("記録が完了しました").title().padding()
             }
-        }
-        
+        }.padding()
+
         List {
             Section {
                 if gait != nil {
@@ -34,7 +32,7 @@ struct ResultView: View {
                     HStack {
                         Text("歩行時間")
                         Spacer()
-                        Text("\(Int(gait!.gait_period)) 秒")
+                        Text("\(String(format: "%.1f", Double(gait!.gait_period))) 秒")
                     }
                     
                     HStack {
@@ -73,24 +71,36 @@ struct ResultView: View {
                         HStack {
                             Text("推定消費エネルギー")
                             Spacer()
-                            Text("\(String(format: "%.1f", gait!.gait_energy)) kcal")
+                            let energy = gait!.gait_energy
+                            if energy == 0 {
+                                Text("体重が未設定")
+                            } else {
+                                Text("\(String(format: "%.1f", energy)) kcal")
+                            }
                         }
                         
                         HStack {
                             Text("推定燃焼脂肪量")
                             Spacer()
-                            Text("\(String(format: "%.1f", gait!.gait_energy / 9)) g")
+                            let fat = gait!.gait_energy / 9
+                            if fat == 0 {
+                                Text("体重が未設定")
+                            } else {
+                                Text("\(String(format: "%.1f", fat)) g")
+                            }
                         }
                     }
                 }
             } footer: {
-                Button(action: {
-                    isFinishButton = true
-                } ){
-                    Text("ホームに戻る").frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40).bold()
+                if showFinishButton {
+                    Button(action: {
+                        isFinishButton = true
+                    } ){
+                        Text("ホームに戻る").button()
+                    }
+                    .secondary()
+                    .padding()
                 }
-                .buttonStyle(.bordered)
-                .padding()
             }
         }.navigationBarBackButtonHidden(showFinishButton)
         

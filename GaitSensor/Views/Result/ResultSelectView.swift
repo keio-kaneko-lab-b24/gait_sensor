@@ -19,7 +19,7 @@ struct ResultSelectView: View {
                 ResultListView(examTypeId: 0)
             } label: {
                 HStack {
-                    Image(systemName: "chart.bar.doc.horizontal")
+                    Image(systemName: "chart.bar.doc.horizontal").icon()
                     Text("ウォーキングの記録")
                 }
             }
@@ -29,7 +29,7 @@ struct ResultSelectView: View {
                 ResultListView(examTypeId: 1)
             } label: {
                 HStack {
-                    Image(systemName: "chart.bar.doc.horizontal")
+                    Image(systemName: "chart.bar.doc.horizontal").icon()
                     Text("歩行機能検査の記録")
                 }
             }
@@ -43,8 +43,8 @@ struct ResultSelectView: View {
                     showAlert = true
                 } label: {
                     HStack {
-                        Text("記録の書き出し")
-                        Image(systemName: "square.and.arrow.up")
+                        Text("記録の書き出し").regular()
+                        Image(systemName: "square.and.arrow.up").icon()
                     }
                 }.alert("運動記録を書き出しました", isPresented: $showAlert) {
                     Button("OK") { /* Do Nothing */}

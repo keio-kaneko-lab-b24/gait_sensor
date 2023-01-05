@@ -32,7 +32,7 @@ struct GaitExamView: View {
             // 歩行開始前: カウントダウン
             if currentTime < 0 {
                 Group {
-                    Text("\(-1 * currentTime)").font(.system(size: 100, weight: .bold))
+                    Text("\(-1 * currentTime)").extraLarge()
                 }.onChange(of: currentTime) { _ in
                     speechText(text: "\(-1 * currentTime)")
                 }.onAppear{
@@ -44,12 +44,12 @@ struct GaitExamView: View {
             if currentTime >= 0 {
                 Group {
                     if examSpeedTypeId == 0 {
-                        Text("最大速度歩行").font(.largeTitle).padding()
+                        Text("最大速度歩行").title()
                     }
                     if examSpeedTypeId == 1 {
-                        Text("快適速度歩行").font(.largeTitle).padding()
+                        Text("快適速度歩行").title()
                     }
-                    Text("\(String(floor(recordManager.gait?.gait_distance ?? 0))) M").font(.system(size: 100, weight: .bold))
+                    Text("\(String(floor(recordManager.gait?.gait_distance ?? 0))) M").extraLarge()
                 }.onAppear{
                     speechText(text: "検査を開始します")
                     let nextExamId = GaitManager().getLastExamId(gaits: gaits, motionSensors: motionSensors)+1
@@ -71,16 +71,15 @@ struct GaitExamView: View {
                             isNextButton = true
                         }
                     } ){
-                        Text("終了").frame(maxWidth: .infinity, maxHeight: 40).bold()
+                        Text("終了").button()
                     }
-                    .buttonStyle(.bordered)
+                    .secondary()
                     .alert("歩行データはありません。\n設定画面に戻ります。", isPresented: $showAlert2) {
                         Button("OK") {
                             speechText(text: "検査を終了します")
                             presentationMode.wrappedValue.dismiss()
                         }
                     }
-                    
                 }.padding()
                 
             }
@@ -92,9 +91,9 @@ struct GaitExamView: View {
                     Button(action: {
                         showAlert1 = true
                     } ){
-                        Text("データ削除").frame(maxWidth: .infinity, maxHeight: 40).bold()
+                        Text("データ削除").button()
                     }
-                    .buttonStyle(.bordered)
+                    .secondary()
                     .alert("注意", isPresented: $showAlert1) {
                         Button("データ削除", role: .destructive) {
                             presentationMode.wrappedValue.dismiss()
@@ -113,10 +112,9 @@ struct GaitExamView: View {
                             isNextButton = true
                         }
                     } ){
-                        Text("保存").frame(maxWidth: .infinity, maxHeight: 40).bold()
+                        Text("保存").button()
                     }
-                    .buttonStyle(.borderedProminent)
-                    .tint(.blue)
+                    .primary()
                     .onAppear {
                         speechText(text: "検査を終了します")
                         recordManager.stop()
