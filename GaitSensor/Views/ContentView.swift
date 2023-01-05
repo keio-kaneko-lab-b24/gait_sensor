@@ -56,7 +56,7 @@ struct HomeView: View {
 //                    DebugView()
 //                } label: {
 //                    HStack {
-//                        Image(systemName: "chart.bar.doc.horizontal").icon()
+//                        Image(systemName: "chart.bar).icon()
 //                        Text("デバッグ")
 //                    }
 //                }.foregroundColor(.gray)

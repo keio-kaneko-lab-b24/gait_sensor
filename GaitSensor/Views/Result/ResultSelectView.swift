@@ -19,7 +19,7 @@ struct ResultSelectView: View {
                 ResultListView(examTypeId: 0)
             } label: {
                 HStack {
-                    Image(systemName: "chart.bar.doc.horizontal").icon()
+                    Image(systemName: "chart.bar").icon()
                     Text("ウォーキングの記録")
                 }
             }
@@ -29,7 +29,7 @@ struct ResultSelectView: View {
                 ResultListView(examTypeId: 1)
             } label: {
                 HStack {
-                    Image(systemName: "chart.bar.doc.horizontal").icon()
+                    Image(systemName: "chart.bar").icon()
                     Text("歩行機能検査の記録")
                 }
             }
@@ -49,7 +49,7 @@ struct ResultSelectView: View {
                 }.alert("運動記録を書き出しました", isPresented: $showAlert) {
                     Button("OK") { /* Do Nothing */}
                 } message: {
-                    Text("「ファイルアプリ」>「このiPhone内」>「GaitSensor」からファイルを確認できます。")
+                    Text("「ファイルアプリ」>「このiPhone内」>「歩行アプリ」からファイルを確認できます。")
                 }
             }
         }
