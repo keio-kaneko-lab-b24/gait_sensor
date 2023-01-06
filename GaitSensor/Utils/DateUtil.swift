@@ -3,18 +3,26 @@ import CoreData
 import Foundation
 
 
+/*
+ unixtime（ミリ秒）を取得する
+ */
 func unixtime() -> Int {
-    return Int(NSDate().timeIntervalSince1970)
+    return Int(NSDate().timeIntervalSince1970 * 1000)
 }
 
-func unixtimeToDate(unixtime: Int) -> Date {
+/*
+ unixtime（ミリ秒）からDateへ変換する
+ */
+func unixtimeToDate(unixtimeMillis: Int) -> Date {
+    let unixtime = Int(unixtimeMillis / 1000)
     return NSDate(timeIntervalSince1970: TimeInterval(unixtime)) as Date
 }
 
 /*
- unixtimeから「xxxx年xx月xx日（x） xx:xx:xx」表記に変換する
+ unixtime（ミリ秒）から「xxxx年xx月xx日（x） xx:xx:xx」表記に変換する
  */
-func unixtimeToDateString(unixtime: Int, short: Bool = false) -> String {
+func unixtimeToDateString(unixtimeMillis: Int, short: Bool = false) -> String {
+    let unixtime = Int(unixtimeMillis / 1000)
     let date = NSDate(timeIntervalSince1970: TimeInterval(unixtime))
     let dateFormatter = DateFormatter()
     dateFormatter.locale = Locale(identifier: "ja_JP")
@@ -37,6 +45,9 @@ func unixtimeToDateString(unixtime: Int, short: Bool = false) -> String {
     return "\(dateString)(\(weekdayString)) \(timeString)"
 }
 
+/*
+ time（秒）からDateStringへ変換する
+ */
 func timeToString(time: Int) -> String {
     let minutes = Int(floor(Double(time)/60))
     let seconds = Int(Double(time).truncatingRemainder(dividingBy: 60.0))

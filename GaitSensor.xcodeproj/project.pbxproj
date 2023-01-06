@@ -22,7 +22,6 @@
 		175FECB22963200200E19831 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECB12963200200E19831 /* SettingView.swift */; };
 		175FECB4296326CF00E19831 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECB3296326CF00E19831 /* ResultView.swift */; };
 		175FECB62963285500E19831 /* GaitExamSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECB52963285500E19831 /* GaitExamSettingView.swift */; };
-		175FECB82963286E00E19831 /* GaitExamSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECB72963286E00E19831 /* GaitExamSelectView.swift */; };
 		175FECBA296328A600E19831 /* GaitExerciseSettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECB9296328A600E19831 /* GaitExerciseSettingView.swift */; };
 		175FECBC296329AE00E19831 /* GaitExamView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECBB296329AE00E19831 /* GaitExamView.swift */; };
 		175FECBE29632A3B00E19831 /* OtherUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECBD29632A3B00E19831 /* OtherUtils.swift */; };
@@ -33,6 +32,7 @@
 		175FECE929666F4100E19831 /* Text.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECE829666F4100E19831 /* Text.swift */; };
 		175FECEB2966797100E19831 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECEA2966797100E19831 /* View.swift */; };
 		175FECF0296690D700E19831 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECEF296690D700E19831 /* Image.swift */; };
+		17B7FD972967182D00EB8EDC /* SettingDeveloperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7FD962967182D00EB8EDC /* SettingDeveloperView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -52,7 +52,6 @@
 		175FECB12963200200E19831 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		175FECB3296326CF00E19831 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
 		175FECB52963285500E19831 /* GaitExamSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaitExamSettingView.swift; sourceTree = "<group>"; };
-		175FECB72963286E00E19831 /* GaitExamSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaitExamSelectView.swift; sourceTree = "<group>"; };
 		175FECB9296328A600E19831 /* GaitExerciseSettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaitExerciseSettingView.swift; sourceTree = "<group>"; };
 		175FECBB296329AE00E19831 /* GaitExamView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaitExamView.swift; sourceTree = "<group>"; };
 		175FECBD29632A3B00E19831 /* OtherUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherUtils.swift; sourceTree = "<group>"; };
@@ -64,6 +63,7 @@
 		175FECE829666F4100E19831 /* Text.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Text.swift; sourceTree = "<group>"; };
 		175FECEA2966797100E19831 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		175FECEF296690D700E19831 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		17B7FD962967182D00EB8EDC /* SettingDeveloperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDeveloperView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				175FECB12963200200E19831 /* SettingView.swift */,
+				17B7FD962967182D00EB8EDC /* SettingDeveloperView.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
@@ -180,7 +181,6 @@
 		175FECAB29631D6100E19831 /* GaitExam */ = {
 			isa = PBXGroup;
 			children = (
-				175FECB72963286E00E19831 /* GaitExamSelectView.swift */,
 				175FECB52963285500E19831 /* GaitExamSettingView.swift */,
 				175FECBB296329AE00E19831 /* GaitExamView.swift */,
 			);
@@ -293,11 +293,11 @@
 				175FECBC296329AE00E19831 /* GaitExamView.swift in Sources */,
 				175FECE12963DA6500E19831 /* ResultSequenceView.swift in Sources */,
 				175FECA62962E10500E19831 /* DateUtil.swift in Sources */,
-				175FECB82963286E00E19831 /* GaitExamSelectView.swift in Sources */,
 				175FEC932962D3F100E19831 /* GaitSensor.xcdatamodeld in Sources */,
 				175FECE42964490700E19831 /* FileManager.swift in Sources */,
 				175FECAE29631DA300E19831 /* ResultSelectView.swift in Sources */,
 				175FEC872962D3EF00E19831 /* GaitSensorApp.swift in Sources */,
+				17B7FD972967182D00EB8EDC /* SettingDeveloperView.swift in Sources */,
 				175FECB22963200200E19831 /* SettingView.swift in Sources */,
 				175FECE929666F4100E19831 /* Text.swift in Sources */,
 				175FECB62963285500E19831 /* GaitExamSettingView.swift in Sources */,
@@ -442,6 +442,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -477,6 +478,7 @@
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

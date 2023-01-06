@@ -72,13 +72,13 @@ struct ResultSequenceView: View {
                 Chart(gaitsSorted.suffix(10)) { gait in
                     BarMark (
                         x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
-                        y: .value("歩幅", Double(60 * gait.gait_steps / gait.gait_period))
+                        y: .value("歩幅", 60 * Double(gait.gait_steps) / ((Double(gait.gait_period) / 1000)))
                     )
                     .foregroundStyle(Color.pink.opacity(0.85))
                     .cornerRadius(10)
                 }.frame(height: 180)
             }.padding()
-        }
+        }.bgColor()
     }
     
     func idString(gait: Gait, gaits: [Gait]) -> String {

@@ -20,14 +20,14 @@ struct GaitManager {
         let deviceId: String = devideId()
         gait.exam_id = Int32(examId)
         gait.exam_type_id = Int32(examTypeId)
-        gait.start_unixtime = Int32(startUnixtime)
-        gait.end_unixtime = Int32(endUnixtime)
+        gait.start_unixtime = Int64(startUnixtime)
+        gait.end_unixtime = Int64(endUnixtime)
         gait.gait_distance = Double(truncating: pedometer.distance ?? 0)
         gait.gait_steps = Int32(truncating: pedometer.numberOfSteps)
         gait.gait_stride = Double(truncating: pedometer.distance ?? 0) / Double(truncating: pedometer.numberOfSteps)
         gait.gait_speed = Double(truncating: pedometer.distance ?? 0) / Double(endUnixtime - startUnixtime)
         gait.gait_period = Int32(endUnixtime - startUnixtime)
-        gait.gait_energy = calcEnergy(speed: gait.gait_speed, weight: Double(weight) ?? 0, hour: Double(gait.gait_period) / 3600)
+        gait.gait_energy = calcEnergy(speed: gait.gait_speed, weight: Double(weight) ?? 0, hour: Double(gait.gait_period) / (1000 * 3600))
         gait.user_id = userId
         gait.user_device_id = deviceId
         gait.user_age = Int32(age) ?? 0
@@ -43,7 +43,7 @@ struct GaitManager {
     func saveMotionSensor(motion: CMDeviceMotion, examId: Int, context: NSManagedObjectContext) -> MotionSensor {
         let motionSensor = MotionSensor(context: context)
         motionSensor.exam_id = Int32(examId)
-        motionSensor.unixtime = Int32(unixtime())
+        motionSensor.unixtime = Int64(unixtime())
         motionSensor.acceleration_x = motion.userAcceleration.x
         motionSensor.acceleration_y = motion.userAcceleration.y
         motionSensor.acceleration_z = motion.userAcceleration.z

@@ -21,19 +21,19 @@ struct ResultView: View {
                     HStack {
                         Text("開始時間")
                         Spacer()
-                        Text(unixtimeToDateString(unixtime: Int(gait!.start_unixtime)))
+                        Text(unixtimeToDateString(unixtimeMillis: Int(gait!.start_unixtime)))
                     }
                     
                     HStack {
                         Text("終了時間")
                         Spacer()
-                        Text(unixtimeToDateString(unixtime: Int(gait!.end_unixtime)))
+                        Text(unixtimeToDateString(unixtimeMillis: Int(gait!.end_unixtime)))
                     }
                     
                     HStack {
                         Text("歩行時間")
                         Spacer()
-                        Text("\(String(format: "%.1f", Double(gait!.gait_period))) 秒")
+                        Text("\(String(format: "%.1f", Double(gait!.gait_period) / 1000)) 秒")
                     }
                     
                     HStack {
@@ -45,7 +45,7 @@ struct ResultView: View {
                     HStack {
                         Text("歩行率")
                         Spacer()
-                        let step_rate = 60 * Double(gait!.gait_steps) / Double(gait!.gait_period)
+                        let step_rate = 60 * Double(gait!.gait_steps) / (Double(gait!.gait_period) / 1000)
                         Text("\(String(format: "%.1f", step_rate)) 歩/分")
                     }
                     
@@ -103,7 +103,7 @@ struct ResultView: View {
                     .padding()
                 }
             }
-        }.navigationBarBackButtonHidden(showFinishButton)
+        }.navigationBarBackButtonHidden(showFinishButton).bgColor()
         
         NavigationLink(
             destination: HomeView(),

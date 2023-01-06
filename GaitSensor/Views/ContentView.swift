@@ -20,10 +20,10 @@ struct HomeView: View {
 
                 // 歩行機能検査画面
                 NavigationLink {
-                    GaitExamSelectView(userId: userId, examTypeId: 1)
+                    GaitExamSettingView(userId: userId, examTypeId: 1)
                 } label: {
                     HStack {
-                        Image(systemName: "figure.walk").icon()
+                        Image(systemName: "figure.strengthtraining.functional").icon()
                         Text("歩行機能検査")
                     }
                 }
@@ -38,18 +38,7 @@ struct HomeView: View {
                     }
                 }
                 
-                // 設定画面
-                NavigationLink {
-                    SettingView()
-                } label: {
-                    HStack {
-                        Image(systemName: "gearshape").icon()
-                        Text("設定")
-                        if weight == "" {
-                            (Text(Image(systemName: "exclamationmark.circle")) + Text("体重が未設定")).foregroundColor(Color.orange)
-                        }
-                    }
-                }
+                
                 
                 // デバッグ画面
 //                NavigationLink {
@@ -60,22 +49,52 @@ struct HomeView: View {
 //                        Text("デバッグ")
 //                    }
 //                }.foregroundColor(.gray)
+            } header : {
+                Text("アクティビティ")
             }
-        }
-        .navigationBarTitle(Text("ホーム"), displayMode: .inline)
-        .navigationBarBackButtonHidden(true)
+            Section {
+                // 設定画面
+                NavigationLink {
+                    SettingView()
+                } label: {
+                    HStack {
+                        Image(systemName: "person").icon()
+                        Text("プロフィール")
+                        if weight == "" {
+                            (Text(Image(systemName: "exclamationmark.circle")) + Text("体重が未設定")).foregroundColor(Color.orange)
+                        }
+                    }
+                }
+                
+                // 設定画面
+                NavigationLink {
+                    SettingDeveloperView()
+                } label: {
+                    HStack {
+                        Image(systemName: "gearshape").icon()
+                        Text("医療者向け設定")
+                    }
+                }
+            } header: {
+                Text("設定")
+            }
+            .navigationBarTitle(Text("ホーム"), displayMode: .inline)
+            .navigationBarBackButtonHidden(true)
+        }.bgColor()
     }
 }
 
 
 struct ContentView: View {
     var body: some View {
-        NavigationStack {
-            HomeView()
-        }.style()
+        ZStack {
+            NavigationStack {
+                HomeView()
+            }.style()
+        }
+        
     }
 }
-
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

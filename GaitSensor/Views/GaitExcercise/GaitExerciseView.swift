@@ -15,7 +15,7 @@ struct GaitExerciseView: View {
     let synthesizer = AVSpeechSynthesizer()
     
     @State var timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
-    @State var currentTime: Int = -3 // カウントダウン分を引いている
+    @State var currentTime: Int = -3 // カウントダウン分を引いている（秒）
     @State var pauseTimer = false
     @State var showAlert1 = false
     @State var showAlert2 = false
@@ -30,10 +30,10 @@ struct GaitExerciseView: View {
     var motionSensors: FetchedResults<MotionSensor>
     
     var body: some View {
-        Group {
+        VStack {
             // 歩行開始前: カウントダウン
             if currentTime < 0 {
-                Group {
+                VStack {
                     Text("\(-1 * currentTime)").extraLarge()
                 }.onChange(of: currentTime) { _ in
                     speechText(text: "\(-1 * currentTime)")
@@ -125,7 +125,6 @@ struct GaitExerciseView: View {
                         Text("歩行データを取得できませんでした。\nやりなおしてください。")
                     }
                 }.padding()
-                
             }
         }.onReceive(timer) { _ in
             currentTime += 1

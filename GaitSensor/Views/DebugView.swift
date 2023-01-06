@@ -38,7 +38,6 @@ struct DebugView: View {
         
         List {
             Text("START: \(String(recordManager.isStarted)) step")
-            Text("経過時間: \(String(format: "%.2f", recordManager.gait?.gait_period ?? 0)) s")
             Text("歩数: \(recordManager.gait?.gait_steps ?? 0) step")
             Text("歩行速度: \(String(format: "%.2f", recordManager.gait?.gait_speed ?? 0)) m/s")
             Text("歩幅: \(String(format: "%.2f", recordManager.gait?.gait_stride ?? 0)) m/step")

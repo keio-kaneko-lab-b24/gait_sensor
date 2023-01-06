@@ -29,10 +29,10 @@ struct GaitExamView: View {
     var motionSensors: FetchedResults<MotionSensor>
     
     var body: some View {
-        Group {
+        VStack {
             // 歩行開始前: カウントダウン
             if currentTime < 0 {
-                Group {
+                VStack {
                     Text("\(-1 * currentTime)").extraLarge()
                 }.onChange(of: currentTime) { _ in
                     speechText(text: "\(-1 * currentTime)")
@@ -83,12 +83,12 @@ struct GaitExamView: View {
                         }
                     }
                 }.padding()
-                
+
             }
-            
+
             // 歩行終了後：「保存」ボタンを表示
             if recordManager.gait?.gait_distance ?? 0 >= Double(meter) {
-                
+
                 HStack {
                     Button(action: {
                         showAlert1 = true
@@ -106,7 +106,7 @@ struct GaitExamView: View {
                     } message: {
                         Text("今回の記録は削除されます。\nよろしいですか？")
                     }
-                    
+
                     Button(action: {
                         if recordManager.gaitCount == 0 {
                             showAlert2 = true
@@ -128,7 +128,6 @@ struct GaitExamView: View {
                         Text("歩行データを取得できませんでした。\nやりなおしてください。")
                     }
                 }.padding()
-                
             }
         }
         .onReceive(timer) { _ in

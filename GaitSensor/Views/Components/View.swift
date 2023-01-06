@@ -11,5 +11,10 @@ extension View {
             .environment(\.defaultMinListRowHeight, 60)
             .fontWeight(.medium)
             .opacity(0.8)
+            .scrollContentBackground(.hidden)
+    }
+    
+    func bgColor() -> some View {
+        self.background(Color("Bg").ignoresSafeArea())
     }
 }

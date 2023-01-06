@@ -1,18 +1,17 @@
 import SwiftUI
 
 struct SettingView: View {
-    @AppStorage(wrappedValue: "",  "gender") private var gender: String
+    @AppStorage(wrappedValue: "-",  "gender") private var gender: String
     @AppStorage(wrappedValue: "",  "age") private var age: String
     @AppStorage(wrappedValue: "",  "height") private var height: String
     @AppStorage(wrappedValue: "",  "weight") private var weight: String
     @AppStorage(wrappedValue: 5,  "voiceSpeed") private var voiceSpeed: Int
-    @AppStorage(wrappedValue: 10,  "sensorHz") private var sensorHz: Int
     
     
     var body: some View {
         VStack {
-            Text("登録情報").title()
-            Text("登録情報の編集ができます。\n体重は消費エネルギーの計算に使用されます。").explain()
+            Text("プロフィール").title()
+            Text("プロフィールの編集ができます。\n体重は消費エネルギーの計算に使用されます。").explain()
 
             List {
                 Section {
@@ -47,7 +46,7 @@ struct SettingView: View {
                         Text("kg")
                     }
                 } header: {
-                    Text("登録情報")
+                    Text("プロフィール")
                 }
                 
                 Section {
@@ -59,19 +58,10 @@ struct SettingView: View {
                         }
                         .pickerStyle(.automatic)
                     }
-                    
-                    HStack {
-                        Picker(selection: $sensorHz, label: Text("センサー取得頻度")) {
-                            ForEach(1...10, id: \.self) {
-                                Text("\(Int($0)) Hz").tag($0)
-                            }
-                        }
-                        .pickerStyle(.automatic)
-                    }
                 } header: {
                     Text("アプリ設定")
                 }
             }
-        }
+        }.bgColor()
     }
 }

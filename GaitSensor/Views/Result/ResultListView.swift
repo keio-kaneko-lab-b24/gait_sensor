@@ -15,41 +15,43 @@ struct ResultListView: View {
     @State var isSelectedButton = false
     
     var body: some View {
-        // 消費エネルギー
         VStack {
-            if examTypeId == 0 {
-                Text("ウォーキングの記録").title()
-            } else if examTypeId == 1 {
-                Text("歩行機能検査の記録").title()
-            }
-            Text("左スワイプでデータを削除できます").explain()
-        }.padding()
-        
-        List {
-            ForEach(lastGaitByExamId(gaits: gaits, examTypeId: examTypeId)) { gait in
-                HStack {
-                    NavigationLink {
-                        ResultView(gait: gait, showEnergy: (examTypeId == 0))
+            // 消費エネルギー
+            VStack {
+                if examTypeId == 0 {
+                    Text("ウォーキングの記録").title()
+                } else if examTypeId == 1 {
+                    Text("歩行機能検査の記録").title()
+                }
+                Text("左スワイプでデータを削除できます").explain()
+            }.padding()
+            
+            List {
+                ForEach(lastGaitByExamId(gaits: gaits, examTypeId: examTypeId)) { gait in
+                    HStack {
+                        NavigationLink {
+                            ResultView(gait: gait, showEnergy: (examTypeId == 0))
+                        } label: {
+                            Text(unixtimeToDateString(unixtimeMillis: Int(gait.start_unixtime), short: true))
+                            Image(systemName: "figure.walk").icon()
+                            Text("\(gait.gait_steps) 歩")
+                        }
+                    }
+                }.onDelete(perform: delete)
+            }.toolbar {
+                ToolbarItem {
+                    Button {
+                        isSelectedButton.toggle()
                     } label: {
-                        Text(unixtimeToDateString(unixtime: Int(gait.start_unixtime), short: true))
-                        Image(systemName: "figure.walk").icon()
-                        Text("\(gait.gait_steps) 歩")
+                        HStack{
+                            Text("時系列で表示").regular()
+                            Image(systemName: "chart.xyaxis.line").icon()
+                        }
+                        
                     }
-                }
-            }.onDelete(perform: delete)
-        }.toolbar {
-            ToolbarItem {
-                Button {
-                    isSelectedButton = true
-                } label: {
-                    HStack{
-                        Text("時系列で表示").regular()
-                        Image(systemName: "chart.xyaxis.line").icon()
-                    }
-                    
                 }
             }
-        }
+        }.bgColor()
         
         NavigationLink(
             destination: ResultSequenceView(

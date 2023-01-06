@@ -52,6 +52,12 @@ struct ResultSelectView: View {
                     Text("「ファイルアプリ」>「このiPhone内」>「歩行アプリ」からファイルを確認できます。")
                 }
             }
-        }
+        }.bgColor()
+    }
+}
+
+struct ResultSelectView_Previews: PreviewProvider {
+    static var previews: some View {
+        ResultSelectView()
     }
 }
