@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct ResultSelectView: View {
+struct ResultHomeView: View {
     
     @FetchRequest(sortDescriptors: [SortDescriptor(\.exam_id), SortDescriptor(\.end_unixtime)])
     var gaits: FetchedResults<Gait>
@@ -14,27 +14,27 @@ struct ResultSelectView: View {
     
     var body: some View {
         List {
-            // ウォーキングの結果画面
-            NavigationLink {
-                ResultListView(examTypeId: 0)
-            } label: {
-                HStack {
-                    Image(systemName: "chart.bar").icon()
-                    Text("ウォーキングの記録")
+            Section {
+                // ウォーキングの結果画面
+                NavigationLink {
+                    ResultListView(examTypeId: 0)
+                } label: {
+                    HStack {
+                        Image(systemName: "chart.bar").icon()
+                        Text("ウォーキングの記録")
+                    }
                 }
-            }
-            
-            // 歩行機能検査の結果画面
-            NavigationLink {
-                ResultListView(examTypeId: 1)
-            } label: {
-                HStack {
-                    Image(systemName: "chart.bar").icon()
-                    Text("歩行機能検査の記録")
+                
+                // 歩行機能検査の結果画面
+                NavigationLink {
+                    ResultListView(examTypeId: 1)
+                } label: {
+                    HStack {
+                        Image(systemName: "chart.bar").icon()
+                        Text("歩行機能検査の記録")
+                    }
                 }
-            }
-        }.toolbar {
-            ToolbarItem {
+                
                 Button {
                     let gaitText = gaitManager.gaitToCsv(gaits: gaits)
                     fileManager.saveFile(data: gaitText, fileName: "gait.csv")
@@ -43,21 +43,24 @@ struct ResultSelectView: View {
                     showAlert = true
                 } label: {
                     HStack {
-                        Text("記録の書き出し").regular()
                         Image(systemName: "square.and.arrow.up").icon()
+                        Text("記録の書き出し").regular()
                     }
                 }.alert("運動記録を書き出しました", isPresented: $showAlert) {
                     Button("OK") { /* Do Nothing */}
                 } message: {
                     Text("「ファイルアプリ」>「このiPhone内」>「歩行アプリ」からファイルを確認できます。")
                 }
+
             }
+            .navigationBarTitle(Text("アクティビティ"), displayMode: .inline)
+            .navigationBarBackButtonHidden(true)
         }.bgColor()
     }
 }
 
-struct ResultSelectView_Previews: PreviewProvider {
+struct ResultHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        ResultSelectView()
+        ResultHomeView()
     }
 }

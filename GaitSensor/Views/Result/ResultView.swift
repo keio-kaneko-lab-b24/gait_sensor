@@ -103,10 +103,12 @@ struct ResultView: View {
                     .padding()
                 }
             }
-        }.navigationBarBackButtonHidden(showFinishButton).bgColor()
+        }
+        .navigationBarBackButtonHidden(showFinishButton).bgColor()
+        .toolbar(.visible, for: .tabBar)
         
         NavigationLink(
-            destination: HomeView(),
+            destination: GaitHomeView(),
             isActive: $isFinishButton) { EmptyView() }
     }
 }

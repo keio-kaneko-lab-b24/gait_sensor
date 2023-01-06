@@ -128,7 +128,7 @@ struct GaitExerciseView: View {
             }
         }.onReceive(timer) { _ in
             currentTime += 1
-        }.navigationBarBackButtonHidden(true)
+        }.navigationBarBackButtonHidden(true).toolbar(.hidden, for: .tabBar)
         
         NavigationLink(
             destination: ResultView(

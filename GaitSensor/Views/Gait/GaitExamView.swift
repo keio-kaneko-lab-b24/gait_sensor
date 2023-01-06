@@ -134,6 +134,7 @@ struct GaitExamView: View {
             currentTime += 1
         }
         .navigationBarBackButtonHidden(true)
+        .toolbar(.hidden, for: .tabBar)
         
         NavigationLink(
             destination: ResultView(

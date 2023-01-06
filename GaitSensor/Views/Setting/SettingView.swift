@@ -5,8 +5,6 @@ struct SettingView: View {
     @AppStorage(wrappedValue: "",  "age") private var age: String
     @AppStorage(wrappedValue: "",  "height") private var height: String
     @AppStorage(wrappedValue: "",  "weight") private var weight: String
-    @AppStorage(wrappedValue: 5,  "voiceSpeed") private var voiceSpeed: Int
-    
     
     var body: some View {
         VStack {
@@ -47,19 +45,6 @@ struct SettingView: View {
                     }
                 } header: {
                     Text("プロフィール")
-                }
-                
-                Section {
-                    HStack {
-                        Picker(selection: $voiceSpeed, label: Text("音声速度")) {
-                            Text("ゆっくり").tag(4)
-                            Text("普通").tag(5)
-                            Text("速い").tag(6)
-                        }
-                        .pickerStyle(.automatic)
-                    }
-                } header: {
-                    Text("アプリ設定")
                 }
             }
         }.bgColor()
