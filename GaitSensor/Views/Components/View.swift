@@ -2,7 +2,7 @@ import SwiftUI
 
 extension View {
     func navigationBarColor() -> some View {
-        self.toolbarBackground(Color.blue.opacity(0.4), for: .navigationBar)
+        self.toolbarBackground(Color.teal.opacity(0.4), for: .navigationBar)
             .toolbarBackground(.visible, for: .navigationBar)
     }
     

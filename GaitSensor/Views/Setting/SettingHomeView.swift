@@ -25,12 +25,13 @@ struct SettingHomeView: View {
                 } label: {
                     HStack {
                         Image(systemName: "gearshape").icon()
-                        Text("医療者向け設定")
+                        Text("アプリ設定")
                     }
                 }
             }
             .navigationBarTitle(Text("設定"), displayMode: .inline)
             .navigationBarBackButtonHidden(true)
+            .navigationBarColor()
         }.bgColor()
     }
 }

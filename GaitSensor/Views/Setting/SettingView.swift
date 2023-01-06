@@ -2,7 +2,7 @@ import SwiftUI
 
 struct SettingView: View {
     @AppStorage(wrappedValue: "-",  "gender") private var gender: String
-    @AppStorage(wrappedValue: "",  "age") private var age: String
+    @AppStorage(wrappedValue: NSDate() as Date,  "birthday") private var birthday: Date
     @AppStorage(wrappedValue: "",  "height") private var height: String
     @AppStorage(wrappedValue: "",  "weight") private var weight: String
     
@@ -24,10 +24,8 @@ struct SettingView: View {
                     }
                     
                     HStack {
-                        Text("年齢")
-                        Spacer()
-                        TextField("年齢を入力してください", text: $age).keyboardType(.decimalPad).multilineTextAlignment(TextAlignment.trailing)
-                        Text("歳")
+                        DatePicker("生年月日", selection: $birthday, in: ...Date.now, displayedComponents: .date)
+                            .environment(\.locale, Locale(identifier: "ja_JP"))
                     }
                     
                     HStack {
@@ -48,5 +46,22 @@ struct SettingView: View {
                 }
             }
         }.bgColor()
+    }
+}
+
+extension Date: RawRepresentable {
+    public var rawValue: String {
+        self.timeIntervalSinceReferenceDate.description
+    }
+    
+    public init?(rawValue: String) {
+        self = Date(timeIntervalSinceReferenceDate: Double(rawValue) ?? 0.0)
+    }
+}
+
+
+struct SettingView_Previews: PreviewProvider {
+    static var previews: some View {
+        SettingView()
     }
 }

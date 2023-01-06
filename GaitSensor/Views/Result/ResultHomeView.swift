@@ -55,6 +55,7 @@ struct ResultHomeView: View {
             }
             .navigationBarTitle(Text("アクティビティ"), displayMode: .inline)
             .navigationBarBackButtonHidden(true)
+            .navigationBarColor()
         }.bgColor()
     }
 }

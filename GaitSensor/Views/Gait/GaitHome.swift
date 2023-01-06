@@ -30,6 +30,7 @@ struct GaitHomeView: View {
             }
             .navigationBarTitle(Text("運動"), displayMode: .inline)
             .navigationBarBackButtonHidden(true)
+            .navigationBarColor()
         }.bgColor()
     }
 }

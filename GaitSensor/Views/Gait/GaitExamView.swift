@@ -52,6 +52,7 @@ struct GaitExamView: View {
                     }
                     Text("目標距離 \(meter) m").explain()
                     Text("\(timeToString(time: currentTime))").extraLarge()
+                    Text("\(String(Int(recordManager.gait?.gait_distance ?? 0))) m").extraLarge()
                 }.onAppear{
                     speechText(text: "検査を開始します")
                     let nextExamId = GaitManager().getLastExamId(gaits: gaits, motionSensors: motionSensors)+1

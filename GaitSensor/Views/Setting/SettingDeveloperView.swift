@@ -27,7 +27,7 @@ struct SettingDeveloperView: View {
                 Section {
                     HStack {
                         Picker(selection: $sensorHz, label: Text("センサー取得頻度")) {
-                            ForEach(1...10, id: \.self) {
+                            ForEach(1...20, id: \.self) {
                                 Text("\(Int($0)) Hz").tag($0)
                             }
                         }
