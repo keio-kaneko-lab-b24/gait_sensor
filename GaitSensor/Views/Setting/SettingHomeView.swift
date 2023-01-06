@@ -11,7 +11,7 @@ struct SettingHomeView: View {
                     SettingView()
                 } label: {
                     HStack {
-                        Image(systemName: "person").icon()
+                        Image(systemName: "person.fill").icon()
                         Text("プロフィール")
                         if weight == "" {
                             (Text(Image(systemName: "exclamationmark.circle")) + Text("体重が未設定")).foregroundColor(Color.orange)
@@ -24,14 +24,13 @@ struct SettingHomeView: View {
                     SettingDeveloperView()
                 } label: {
                     HStack {
-                        Image(systemName: "gearshape").icon()
+                        Image(systemName: "gearshape.fill").icon()
                         Text("アプリ設定")
                     }
                 }
             }
             .navigationBarTitle(Text("設定"), displayMode: .inline)
             .navigationBarBackButtonHidden(true)
-            .navigationBarColor()
         }.bgColor()
     }
 }

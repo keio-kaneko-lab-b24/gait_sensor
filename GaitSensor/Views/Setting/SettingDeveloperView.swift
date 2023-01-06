@@ -8,7 +8,7 @@ struct SettingDeveloperView: View {
     var body: some View {
         VStack {
             Text("アプリ設定").title()
-            Text("アプリの設定ができます。").explain()
+            Text("アプリの詳細設定ができます。").explain()
             
             List {
                 Section {
@@ -21,7 +21,7 @@ struct SettingDeveloperView: View {
                         .pickerStyle(.automatic)
                     }
                 } header: {
-                    Text("アプリ設定")
+                    Text("設定")
                 }
                 
                 Section {

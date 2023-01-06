@@ -8,9 +8,11 @@ struct SettingView: View {
     
     var body: some View {
         VStack {
-            Text("プロフィール").title()
-            Text("プロフィールの編集ができます。\n体重は消費エネルギーの計算に使用されます。").explain()
-
+            VStack {
+                Text("プロフィール").title()
+                Text("プロフィールの編集ができます。\n体重は消費エネルギーの計算に使用されます。").explain()
+            }.padding(.top)
+            
             List {
                 Section {
                     HStack {
@@ -41,8 +43,6 @@ struct SettingView: View {
                         TextField("体重を入力してください", text: $weight).keyboardType(.decimalPad).multilineTextAlignment(TextAlignment.trailing)
                         Text("kg")
                     }
-                } header: {
-                    Text("プロフィール")
                 }
             }
         }.bgColor()

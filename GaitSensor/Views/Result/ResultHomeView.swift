@@ -20,7 +20,7 @@ struct ResultHomeView: View {
                     ResultListView(examTypeId: 0)
                 } label: {
                     HStack {
-                        Image(systemName: "chart.bar").icon()
+                        Image(systemName: "chart.bar.fill").icon()
                         Text("ウォーキングの記録")
                     }
                 }
@@ -30,7 +30,7 @@ struct ResultHomeView: View {
                     ResultListView(examTypeId: 1)
                 } label: {
                     HStack {
-                        Image(systemName: "chart.bar").icon()
+                        Image(systemName: "chart.bar.fill").icon()
                         Text("歩行機能検査の記録")
                     }
                 }
@@ -44,7 +44,7 @@ struct ResultHomeView: View {
                 } label: {
                     HStack {
                         Image(systemName: "square.and.arrow.up").icon()
-                        Text("記録の書き出し").regular()
+                        Text("記録の書き出し")
                     }
                 }.alert("運動記録を書き出しました", isPresented: $showAlert) {
                     Button("OK") { /* Do Nothing */}
@@ -53,9 +53,8 @@ struct ResultHomeView: View {
                 }
 
             }
-            .navigationBarTitle(Text("アクティビティ"), displayMode: .inline)
+            .navigationBarTitle(Text("記録"), displayMode: .inline)
             .navigationBarBackButtonHidden(true)
-            .navigationBarColor()
         }.bgColor()
     }
 }

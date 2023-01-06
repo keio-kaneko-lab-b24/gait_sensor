@@ -13,7 +13,7 @@ struct GaitHomeView: View {
                     GaitExerciseSettingView(userId: userId, examTypeId: 0)
                 } label: {
                     HStack {
-                        Image(systemName: "figure.walk").icon()
+                        Image(systemName: "shoeprints.fill").icon()
                         Text("ウォーキング")
                     }
                 }
@@ -23,14 +23,13 @@ struct GaitHomeView: View {
                     GaitExamSettingView(userId: userId, examTypeId: 1)
                 } label: {
                     HStack {
-                        Image(systemName: "figure.strengthtraining.functional").icon()
-                        Text("機能検査")
+                        Image(systemName: "shoeprints.fill").icon()
+                        Text("歩行機能検査")
                     }
                 }
             }
             .navigationBarTitle(Text("運動"), displayMode: .inline)
             .navigationBarBackButtonHidden(true)
-            .navigationBarColor()
         }.bgColor()
     }
 }

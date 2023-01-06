@@ -78,7 +78,7 @@ struct ResultSequenceView: View {
                     .cornerRadius(10)
                 }.frame(height: 180)
             }.padding()
-        }.bgColor()
+        }.bgColor().toolbar(.hidden, for: .tabBar)
     }
     
     func idString(gait: Gait, gaits: [Gait]) -> String {

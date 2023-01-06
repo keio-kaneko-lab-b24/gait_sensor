@@ -10,7 +10,7 @@ extension Text {
     }
     
     func title() -> some View {
-        self.font(.title).bold()
+        self.font(.title).bold().padding().padding(.top, 10)
     }
     
     func title2() -> some View {
@@ -24,11 +24,17 @@ extension Text {
             .multilineTextAlignment(.center)
     }
     
-    func regular() -> some View {
-        self.fontWeight(.regular)
+    func toolbar() -> some View {
+        self.fontWeight(.regular).accentColor(.white).foregroundColor(.white)
     }
     
     func button() -> some View {
         self.frame(maxWidth: .infinity, minHeight: 40, maxHeight: 40).bold()
+    }
+}
+
+struct ComponentsTextView_Previews: PreviewProvider {
+    static var previews: some View {
+        ContentView()
     }
 }
