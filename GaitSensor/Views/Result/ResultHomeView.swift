@@ -43,7 +43,7 @@ struct ResultHomeView: View {
                     showAlert = true
                 } label: {
                     HStack {
-                        Image(systemName: "square.and.arrow.up").icon()
+                        Image(systemName: "square.and.arrow.up.fill").icon()
                         Text("記録の書き出し")
                     }
                 }.alert("運動記録を書き出しました", isPresented: $showAlert) {

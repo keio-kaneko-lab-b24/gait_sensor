@@ -30,6 +30,13 @@ extension View {
     func bgColor() -> some View {
         self.background(Color("Bg").ignoresSafeArea())
     }
+    
+    func card() -> some View {
+        self.frame(maxWidth: .infinity, alignment: .center)
+            .background(.white)
+            .modifier(CardModifier())
+            .padding(.all, 10)
+    }
 }
 
 struct CGViewModifier: ViewModifier {
@@ -67,6 +74,14 @@ struct CGViewModifier: ViewModifier {
 
     func body(content: Content) -> some View {
         content
+    }
+}
+
+struct CardModifier: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .cornerRadius(20)
+            .shadow(color: Color.black.opacity(0.2), radius: 2, x: 2, y: 2)
     }
 }
 

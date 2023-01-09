@@ -21,11 +21,19 @@ func unixtimeToDate(unixtimeMillis: Int) -> Date {
 /*
  unixtime（ミリ秒）から「xxxx年xx月xx日（x） xx:xx:xx」表記に変換する
  */
-func unixtimeToDateString(unixtimeMillis: Int, short: Bool = false) -> String {
+func unixtimeToDateString(unixtimeMillis: Int, short: Bool = false, mini: Bool = false) -> String {
     let unixtime = Int(unixtimeMillis / 1000)
     let date = NSDate(timeIntervalSince1970: TimeInterval(unixtime))
     let dateFormatter = DateFormatter()
     dateFormatter.locale = Locale(identifier: "ja_JP")
+    
+    if (mini) {
+        dateFormatter.dateStyle = .short
+        dateFormatter.timeStyle = .none
+        let dateString = dateFormatter.string(from: date as Date)
+        return String(dateString.suffix(5))
+    }
+    
     // 日付
     dateFormatter.dateStyle = .medium
     dateFormatter.timeStyle = .none
