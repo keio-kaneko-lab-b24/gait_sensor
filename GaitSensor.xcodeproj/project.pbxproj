@@ -13,11 +13,10 @@
 		175FEC8E2962D3F100E19831 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 175FEC8D2962D3F100E19831 /* Preview Assets.xcassets */; };
 		175FEC932962D3F100E19831 /* GaitSensor.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 175FEC912962D3F100E19831 /* GaitSensor.xcdatamodeld */; };
 		175FEC9B2962DA8300E19831 /* Persistent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FEC9A2962DA8300E19831 /* Persistent.swift */; };
-		175FEC9E2962DB3900E19831 /* DebugView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FEC9D2962DB3900E19831 /* DebugView.swift */; };
 		175FECA12962DE2F00E19831 /* GaitRecordManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECA02962DE2F00E19831 /* GaitRecordManager.swift */; };
 		175FECA32962DEE100E19831 /* GaitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECA22962DEE100E19831 /* GaitManager.swift */; };
 		175FECA62962E10500E19831 /* DateUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECA52962E10500E19831 /* DateUtil.swift */; };
-		175FECAE29631DA300E19831 /* ResultSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECAD29631DA300E19831 /* ResultSelectView.swift */; };
+		175FECAE29631DA300E19831 /* ResultHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECAD29631DA300E19831 /* ResultHomeView.swift */; };
 		175FECB029631DDA00E19831 /* ResultListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECAF29631DDA00E19831 /* ResultListView.swift */; };
 		175FECB22963200200E19831 /* SettingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECB12963200200E19831 /* SettingView.swift */; };
 		175FECB4296326CF00E19831 /* ResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECB3296326CF00E19831 /* ResultView.swift */; };
@@ -33,6 +32,8 @@
 		175FECEB2966797100E19831 /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECEA2966797100E19831 /* View.swift */; };
 		175FECF0296690D700E19831 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = 175FECEF296690D700E19831 /* Image.swift */; };
 		17B7FD972967182D00EB8EDC /* SettingDeveloperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7FD962967182D00EB8EDC /* SettingDeveloperView.swift */; };
+		17B7FD992967ACC200EB8EDC /* GaitHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7FD982967ACC200EB8EDC /* GaitHome.swift */; };
+		17B7FD9C2967B50C00EB8EDC /* SettingHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7FD9B2967B50C00EB8EDC /* SettingHomeView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,11 +44,10 @@
 		175FEC8D2962D3F100E19831 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		175FEC922962D3F100E19831 /* GaitSensor.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = GaitSensor.xcdatamodel; sourceTree = "<group>"; };
 		175FEC9A2962DA8300E19831 /* Persistent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistent.swift; sourceTree = "<group>"; };
-		175FEC9D2962DB3900E19831 /* DebugView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugView.swift; sourceTree = "<group>"; };
 		175FECA02962DE2F00E19831 /* GaitRecordManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaitRecordManager.swift; sourceTree = "<group>"; };
 		175FECA22962DEE100E19831 /* GaitManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaitManager.swift; sourceTree = "<group>"; };
 		175FECA52962E10500E19831 /* DateUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateUtil.swift; sourceTree = "<group>"; };
-		175FECAD29631DA300E19831 /* ResultSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSelectView.swift; sourceTree = "<group>"; };
+		175FECAD29631DA300E19831 /* ResultHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultHomeView.swift; sourceTree = "<group>"; };
 		175FECAF29631DDA00E19831 /* ResultListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultListView.swift; sourceTree = "<group>"; };
 		175FECB12963200200E19831 /* SettingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingView.swift; sourceTree = "<group>"; };
 		175FECB3296326CF00E19831 /* ResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultView.swift; sourceTree = "<group>"; };
@@ -64,6 +64,8 @@
 		175FECEA2966797100E19831 /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		175FECEF296690D700E19831 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
 		17B7FD962967182D00EB8EDC /* SettingDeveloperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDeveloperView.swift; sourceTree = "<group>"; };
+		17B7FD982967ACC200EB8EDC /* GaitHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaitHome.swift; sourceTree = "<group>"; };
+		17B7FD9B2967B50C00EB8EDC /* SettingHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHomeView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -129,12 +131,10 @@
 			isa = PBXGroup;
 			children = (
 				175FECE529666EBA00E19831 /* Components */,
-				175FECAC29631D7200E19831 /* GaitExcercise */,
-				175FECAB29631D6100E19831 /* GaitExam */,
+				175FECAC29631D7200E19831 /* Gait */,
 				175FECA929631D5600E19831 /* Result */,
 				175FECAA29631D5C00E19831 /* Setting */,
 				175FEC882962D3EF00E19831 /* ContentView.swift */,
-				175FEC9D2962DB3900E19831 /* DebugView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -161,7 +161,7 @@
 		175FECA929631D5600E19831 /* Result */ = {
 			isa = PBXGroup;
 			children = (
-				175FECAD29631DA300E19831 /* ResultSelectView.swift */,
+				175FECAD29631DA300E19831 /* ResultHomeView.swift */,
 				175FECAF29631DDA00E19831 /* ResultListView.swift */,
 				175FECB3296326CF00E19831 /* ResultView.swift */,
 				175FECE02963DA6500E19831 /* ResultSequenceView.swift */,
@@ -172,28 +172,23 @@
 		175FECAA29631D5C00E19831 /* Setting */ = {
 			isa = PBXGroup;
 			children = (
+				17B7FD9B2967B50C00EB8EDC /* SettingHomeView.swift */,
 				175FECB12963200200E19831 /* SettingView.swift */,
 				17B7FD962967182D00EB8EDC /* SettingDeveloperView.swift */,
 			);
 			path = Setting;
 			sourceTree = "<group>";
 		};
-		175FECAB29631D6100E19831 /* GaitExam */ = {
+		175FECAC29631D7200E19831 /* Gait */ = {
 			isa = PBXGroup;
 			children = (
+				17B7FD982967ACC200EB8EDC /* GaitHome.swift */,
+				175FECB9296328A600E19831 /* GaitExerciseSettingView.swift */,
+				175FECBF296333B900E19831 /* GaitExerciseView.swift */,
 				175FECB52963285500E19831 /* GaitExamSettingView.swift */,
 				175FECBB296329AE00E19831 /* GaitExamView.swift */,
 			);
-			path = GaitExam;
-			sourceTree = "<group>";
-		};
-		175FECAC29631D7200E19831 /* GaitExcercise */ = {
-			isa = PBXGroup;
-			children = (
-				175FECB9296328A600E19831 /* GaitExerciseSettingView.swift */,
-				175FECBF296333B900E19831 /* GaitExerciseView.swift */,
-			);
-			path = GaitExcercise;
+			path = Gait;
 			sourceTree = "<group>";
 		};
 		175FECE529666EBA00E19831 /* Components */ = {
@@ -280,8 +275,8 @@
 				175FEC9B2962DA8300E19831 /* Persistent.swift in Sources */,
 				175FECF0296690D700E19831 /* Image.swift in Sources */,
 				175FECA12962DE2F00E19831 /* GaitRecordManager.swift in Sources */,
-				175FEC9E2962DB3900E19831 /* DebugView.swift in Sources */,
 				175FECC0296333B900E19831 /* GaitExerciseView.swift in Sources */,
+				17B7FD992967ACC200EB8EDC /* GaitHome.swift in Sources */,
 				175FECB029631DDA00E19831 /* ResultListView.swift in Sources */,
 				175FECA32962DEE100E19831 /* GaitManager.swift in Sources */,
 				175FECBE29632A3B00E19831 /* OtherUtils.swift in Sources */,
@@ -295,7 +290,8 @@
 				175FECA62962E10500E19831 /* DateUtil.swift in Sources */,
 				175FEC932962D3F100E19831 /* GaitSensor.xcdatamodeld in Sources */,
 				175FECE42964490700E19831 /* FileManager.swift in Sources */,
-				175FECAE29631DA300E19831 /* ResultSelectView.swift in Sources */,
+				175FECAE29631DA300E19831 /* ResultHomeView.swift in Sources */,
+				17B7FD9C2967B50C00EB8EDC /* SettingHomeView.swift in Sources */,
 				175FEC872962D3EF00E19831 /* GaitSensorApp.swift in Sources */,
 				17B7FD972967182D00EB8EDC /* SettingDeveloperView.swift in Sources */,
 				175FECB22963200200E19831 /* SettingView.swift in Sources */,

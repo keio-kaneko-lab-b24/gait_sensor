@@ -17,7 +17,7 @@ struct GaitExamSettingView: View {
                 if examSpeedTypeId == 1 {
                     Text("いつものペースで歩いてください。\n転倒には十分に留意してください。").explain()
                 }
-            }.padding()
+            }.padding(.top)
             
             Form {
                 Section {
@@ -28,6 +28,8 @@ struct GaitExamSettingView: View {
                     .pickerStyle(.automatic)
                     
                     Picker(selection: $meter, label: Text("歩行距離")) {
+                        Text("3 m").tag(3)
+                        Text("5 m").tag(5)
                         Text("10 m").tag(10)
                         Text("20 m").tag(20)
                         Text("30 m").tag(30)

@@ -13,7 +13,7 @@ struct GaitExerciseSettingView: View {
             VStack {
                 Text("ウォーキング").title()
                 Text("転倒には十分に留意してください。\n音声ガイドを有効にするにはマナーモードを解除してください。").explain()
-            }.padding()
+            }.padding(.top)
             
             Form {
                 Section {

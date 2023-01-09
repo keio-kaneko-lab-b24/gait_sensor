@@ -25,7 +25,7 @@ struct GaitManager {
         gait.gait_distance = Double(truncating: pedometer.distance ?? 0)
         gait.gait_steps = Int32(truncating: pedometer.numberOfSteps)
         gait.gait_stride = Double(truncating: pedometer.distance ?? 0) / Double(truncating: pedometer.numberOfSteps)
-        gait.gait_speed = Double(truncating: pedometer.distance ?? 0) / Double(endUnixtime - startUnixtime)
+        gait.gait_speed = Double(truncating: pedometer.distance ?? 0) / (Double(endUnixtime - startUnixtime) / 1000)
         gait.gait_period = Int32(endUnixtime - startUnixtime)
         gait.gait_energy = calcEnergy(speed: gait.gait_speed, weight: Double(weight) ?? 0, hour: Double(gait.gait_period) / (1000 * 3600))
         gait.user_id = userId

@@ -24,30 +24,33 @@ struct ResultListView: View {
                     Text("歩行機能検査の記録").title()
                 }
                 Text("左スワイプでデータを削除できます").explain()
-            }.padding()
+            }.padding(.top)
             
-            List {
-                ForEach(lastGaitByExamId(gaits: gaits, examTypeId: examTypeId)) { gait in
-                    HStack {
-                        NavigationLink {
-                            ResultView(gait: gait, showEnergy: (examTypeId == 0))
-                        } label: {
-                            Text(unixtimeToDateString(unixtimeMillis: Int(gait.start_unixtime), short: true))
-                            Image(systemName: "figure.walk").icon()
-                            Text("\(gait.gait_steps) 歩")
+            if gaits.count >= 1 {
+                List {
+                    ForEach(lastGaitByExamId(gaits: gaits, examTypeId: examTypeId)) { gait in
+                        HStack {
+                            NavigationLink {
+                                ResultView(gait: gait, showEnergy: (examTypeId == 0))
+                            } label: {
+                                Text(unixtimeToDateString(unixtimeMillis: Int(gait.start_unixtime), short: true))
+                                Image(systemName: "shoeprints.fill").icon()
+                                Text("\(gait.gait_steps) 歩")
+                            }
                         }
-                    }
-                }.onDelete(perform: delete)
-            }.toolbar {
-                ToolbarItem {
-                    Button {
-                        isSelectedButton.toggle()
-                    } label: {
-                        HStack{
-                            Text("時系列で表示").regular()
-                            Image(systemName: "chart.xyaxis.line").icon()
-                        }
-                        
+                    }.onDelete(perform: delete)
+                }
+            } else {
+                Color("Bg")
+            }
+        }.toolbar {
+            ToolbarItem {
+                Button {
+                    isSelectedButton.toggle()
+                } label: {
+                    HStack{
+                        Text("時系列で表示").toolbar()
+                        Image(systemName: "chart.xyaxis.line").toolbarIcon()
                     }
                 }
             }

@@ -38,8 +38,8 @@ class GaitRecordManager: NSObject, ObservableObject {
             motionManager.startDeviceMotionUpdates(to: self.queue){
                 (data: CMDeviceMotion?, error: Error?) in
                 if (error == nil && data != nil) {
-                    // 5分以上稼働している場合はセンサーの取得を停止する
-                    if (unixtime() - self.startUnixtime <= 300) {
+                    // 1万回以上（10Hzで1000秒）稼働している場合はセンサーの取得を停止する
+                    if (self.motionSensorCount < 10000) {
                         let _ = self.gaitManager.saveMotionSensor(
                             motion: data!, examId: examId, context: context)
                         self.motionSensorCount += 1
