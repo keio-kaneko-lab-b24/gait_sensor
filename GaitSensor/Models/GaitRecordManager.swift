@@ -40,8 +40,10 @@ class GaitRecordManager: NSObject, ObservableObject {
                 if (error == nil && data != nil) {
                     // 1万回以上（10Hzで1000秒）稼働している場合はセンサーの取得を停止する
                     if (self.motionSensorCount < 10000) {
-                        let _ = self.gaitManager.saveMotionSensor(
-                            motion: data!, examId: examId, context: context)
+                        context.performAndWait {
+                            let _ = self.gaitManager.saveMotionSensor(
+                                motion: data!, examId: examId, context: context)
+                        }
                         self.motionSensorCount += 1
                     }
                 }
@@ -52,16 +54,19 @@ class GaitRecordManager: NSObject, ObservableObject {
             pedometerManager.startUpdates(from: NSDate() as Date) {
                 (data: CMPedometerData?, error: Error?) in
                 if (error == nil && data != nil) {
-                    let gait = self.gaitManager.saveGait(
-                        pedometer: data!, examId: examId, examTypeId: examTypeId,
-                        startUnixtime: self.startUnixtime, endUnixtime: unixtime(), userId: userId,
-                        context: context)
+                    var gait: Gait? = nil
+                    context.performAndWait {
+                        gait = self.gaitManager.saveGait(
+                            pedometer: data!, examId: examId, examTypeId: examTypeId,
+                            startUnixtime: self.startUnixtime, endUnixtime: unixtime(), userId: userId,
+                            context: context)
+                    }
                     // Published変数なのでmainスレッドで変更する必要あり
                     DispatchQueue.main.async {
                         self.gait = gait
                     }
                     self.gaitCount += 1
-                    print("gait is updated. \(gait.end_unixtime)")
+                    print("gait is updated. \(gait?.end_unixtime ?? 0)")
                 }
             }
         }

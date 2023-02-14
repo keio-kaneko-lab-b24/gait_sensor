@@ -130,9 +130,12 @@ struct GaitExamView: View {
                     }
                 }.padding()
             }
-        }
-        .onReceive(timer) { _ in
+        }.onReceive(timer) { _ in
             currentTime += 1
+        }.onAppear {
+            UIApplication.shared.isIdleTimerDisabled = true
+        }.onDisappear {
+            UIApplication.shared.isIdleTimerDisabled = false
         }
         .navigationBarBackButtonHidden(true)
         .toolbar(.hidden, for: .tabBar)

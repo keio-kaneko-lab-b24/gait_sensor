@@ -83,8 +83,10 @@ struct ResultListView: View {
         offsets.forEach { index in
             let lastGaits = lastGaitByExamId(gaits: gaits, examTypeId: examTypeId)
             let exam_id = Int(lastGaits[index].exam_id)
-            gaitManager.deleteGait(gaits: gaits, examId: exam_id, context: context)
-            gaitManager.deleteMotionSensor(motionSensors: motionSensors, examId: exam_id, context: context)
+            context.performAndWait {
+                gaitManager.deleteGait(gaits: gaits, examId: exam_id, context: context)
+                gaitManager.deleteMotionSensor(motionSensors: motionSensors, examId: exam_id, context: context)
+            }
         }
     }
 }

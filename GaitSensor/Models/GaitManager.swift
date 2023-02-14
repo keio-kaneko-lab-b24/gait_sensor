@@ -116,8 +116,8 @@ struct GaitManager {
     func gaitToCsv(gaits: FetchedResults<Gait>) -> String {
         var text = "exam_id,exam_type_id,start_unixtime,end_unixtime,gait_distance,gait_steps,gait_stride,gait_speed,gait_period,gait_energy,user_id,user_device_id,user_age,user_height,user_weight\n"
         for gait in gaits {
-            text += "\(gait.exam_id),\(gait.exam_type_id),\(gait.start_unixtime),\(gait.end_unixtime)"
-            text += "\(gait.gait_distance),\(gait.gait_steps),\(gait.gait_stride),\(gait.gait_speed),\(gait.gait_period),\(gait.gait_energy)"
+            text += "\(gait.exam_id),\(gait.exam_type_id),\(gait.start_unixtime),\(gait.end_unixtime),"
+            text += "\(gait.gait_distance),\(gait.gait_steps),\(gait.gait_stride),\(gait.gait_speed),\(gait.gait_period),\(gait.gait_energy),"
             text += "\(String(describing: gait.user_id)),\(String(describing: gait.user_device_id)),\(gait.user_age),\(gait.user_height),\(gait.user_weight)"
             text += "\n"
         }
@@ -130,10 +130,10 @@ struct GaitManager {
     func motionSensorToCsv(motionSensors: FetchedResults<MotionSensor>) -> String {
         var text = "exam_id,unixtime,acceleration_x,acceleration_y,acceleration_z,rotation_x,rotation_y,rotation_z,gravity_x,rotation_y,rotation_z,pitch,yaw,roll\n"
         for sensor in motionSensors {
-            text += "\(sensor.exam_id),\(sensor.unixtime)"
-            text += "\(sensor.acceleration_x),\(sensor.acceleration_y),\(sensor.acceleration_z)"
-            text += "\(sensor.rotation_x),\(sensor.rotation_y),\(sensor.rotation_z)"
-            text += "\(sensor.gravity_x),\(sensor.gravity_y),\(sensor.gravity_z)"
+            text += "\(sensor.exam_id),\(sensor.unixtime),"
+            text += "\(sensor.acceleration_x),\(sensor.acceleration_y),\(sensor.acceleration_z),"
+            text += "\(sensor.rotation_x),\(sensor.rotation_y),\(sensor.rotation_z),"
+            text += "\(sensor.gravity_x),\(sensor.gravity_y),\(sensor.gravity_z),"
             text += "\(sensor.pitch),\(sensor.yaw),\(sensor.roll)"
             text += "\n"
         }
