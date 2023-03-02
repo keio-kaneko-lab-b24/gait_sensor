@@ -11,6 +11,7 @@ class GaitRecordManager: NSObject, ObservableObject {
     
     var gaitManager = GaitManager()
     @Published var gait: Gait? = nil
+    @Published var motionSensor: MotionSensor? = nil
     
     var startUnixtime: Int = 0
     @Published var isStarted: Bool = false
@@ -38,13 +39,18 @@ class GaitRecordManager: NSObject, ObservableObject {
             motionManager.startDeviceMotionUpdates(to: self.queue){
                 (data: CMDeviceMotion?, error: Error?) in
                 if (error == nil && data != nil) {
+                    var motionSensor: MotionSensor? = nil
                     // 1万回以上（10Hzで1000秒）稼働している場合はセンサーの取得を停止する
                     if (self.motionSensorCount < 10000) {
                         context.performAndWait {
-                            let _ = self.gaitManager.saveMotionSensor(
+                            motionSensor = self.gaitManager.saveMotionSensor(
                                 motion: data!, examId: examId, context: context)
                         }
                         self.motionSensorCount += 1
+                    }
+                    // Published変数なのでmainスレッドで変更する必要あり
+                    DispatchQueue.main.async {
+                        self.motionSensor = motionSensor
                     }
                 }
             }

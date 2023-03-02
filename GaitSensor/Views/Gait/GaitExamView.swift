@@ -142,7 +142,7 @@ struct GaitExamView: View {
         
         NavigationLink(
             destination: ResultView(
-                gait: recordManager.gait,
+                gait: recordManager.gait, motionSensor: recordManager.motionSensor,
                 showFinishButton: true),
             isActive: $isNextButton) { EmptyView() }
     }

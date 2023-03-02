@@ -137,8 +137,8 @@ struct GaitExerciseView: View {
         
         NavigationLink(
             destination: ResultView(
-                gait: recordManager.gait, showEnergy: true,
-                showFinishButton: true),
+                gait: recordManager.gait, motionSensor: recordManager.motionSensor,
+                showEnergy: true, showFinishButton: true),
             isActive: $isNextButton) { EmptyView() }
     }
     

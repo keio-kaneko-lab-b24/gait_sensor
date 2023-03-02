@@ -28,10 +28,11 @@ struct ResultListView: View {
             
             if gaits.count >= 1 {
                 List {
-                    ForEach(lastGaitByExamId(gaits: gaits, examTypeId: examTypeId)) { gait in
+                    ForEach(lastGaitsForExamId(gaits: gaits, examTypeId: examTypeId)) { gait in
                         HStack {
                             NavigationLink {
-                                ResultView(gait: gait, showEnergy: (examTypeId == 0))
+                                let motionSensor: MotionSensor? = motionSensors.filter{ $0.exam_id == gait.exam_id}.last
+                                ResultView(gait: gait, motionSensor: motionSensor, showEnergy: (examTypeId == 0))
                             } label: {
                                 Text(unixtimeToDateString(unixtimeMillis: Int(gait.start_unixtime), short: true))
                                 Image(systemName: "shoeprints.fill").icon()
@@ -58,14 +59,14 @@ struct ResultListView: View {
         
         NavigationLink(
             destination: ResultSequenceView(
-                gaits: lastGaitByExamId(gaits: gaits, examTypeId: examTypeId),
+                gaits: lastGaitsForExamId(gaits: gaits, examTypeId: examTypeId),
                 examTypeId: examTypeId),
             isActive: $isSelectedButton) { EmptyView() }
     }
     
-    // Gaitは取得したタイミングで全部保存されているので、ExamIdごとに最後のみを使用する
+    // Gaitは取得したタイミングで全部保存されているので、ExamIdごとに最後のみを取得する
     // また、同時にexamTypeIdも絞り込む
-    func lastGaitByExamId(gaits: FetchedResults<Gait>, examTypeId: Int) -> [Gait] {
+    func lastGaitsForExamId(gaits: FetchedResults<Gait>, examTypeId: Int) -> [Gait] {
         let gaitDict = Dictionary(grouping: gaits, by: { $0.exam_id })
         var gaitList: [Gait] = []
         for elem in gaitDict {
@@ -81,7 +82,7 @@ struct ResultListView: View {
     // ExamIdに紐づくGaitとMotionSensorを削除する。
     func delete(offsets: IndexSet) {
         offsets.forEach { index in
-            let lastGaits = lastGaitByExamId(gaits: gaits, examTypeId: examTypeId)
+            let lastGaits = lastGaitsForExamId(gaits: gaits, examTypeId: examTypeId)
             let exam_id = Int(lastGaits[index].exam_id)
             context.performAndWait {
                 gaitManager.deleteGait(gaits: gaits, examId: exam_id, context: context)

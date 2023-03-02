@@ -3,6 +3,7 @@ import SwiftUI
 struct ResultView: View {
     
     let gait: Gait?
+    let motionSensor: MotionSensor?
     var showEnergy: Bool = false
     var showFinishButton: Bool = false
     @State var isFinishButton = false
@@ -25,16 +26,19 @@ struct ResultView: View {
                             Text(unixtimeToDateString(unixtimeMillis: Int(gait!.start_unixtime)))
                         }
                         
-                        HStack {
-                            Text("終了時間")
-                            Spacer()
-                            Text(unixtimeToDateString(unixtimeMillis: Int(gait!.end_unixtime)))
-                        }
-                        
-                        HStack {
-                            Text("歩行時間")
-                            Spacer()
-                            Text("\(String(format: "%.1f", Double(gait!.gait_period) / 1000)) 秒")
+                        if motionSensor != nil {
+                            HStack {
+                                Text("終了時間")
+                                Spacer()
+                                Text(unixtimeToDateString(unixtimeMillis: Int(motionSensor!.unixtime)))
+                            }
+                            
+                            HStack {
+                                Text("歩行時間")
+                                Spacer()
+                                let gait_period = motionSensor!.unixtime - gait!.start_unixtime
+                                Text("\(String(format: "%.1f", Double(gait_period) / 1000)) 秒")
+                            }
                         }
                         
                         HStack {
