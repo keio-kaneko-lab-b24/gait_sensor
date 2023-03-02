@@ -8,13 +8,13 @@ struct GaitHomeView: View {
         List {
             Section {
                 
-                // ウォーキング画面
+                // エクササイズ画面
                 NavigationLink {
                     GaitExerciseSettingView(userId: userId, examTypeId: 0)
                 } label: {
                     HStack {
                         Image(systemName: "shoeprints.fill").icon()
-                        Text("ウォーキング")
+                        Text("エクササイズ")
                     }
                 }
 

@@ -45,12 +45,12 @@ struct GaitExerciseView: View {
             // 歩行中: データの取得と画面更新
             if currentTime >= 0 {
                 Group {
-                    Text("ウォーキング").title()
+                    Text("エクササイズ").title()
                     Text("目標時間 \(timeToString(time: minutes*60+seconds))").explain()
                     Text("\(timeToString(time: currentTime))").extraLarge()
                     Text("\(String(Int(recordManager.gait?.gait_distance ?? 0))) m").extraLarge()
                 }.onAppear{
-                    speechText(text: "ウォーキングを開始します")
+                    speechText(text: "エクササイズを開始します")
                     let nextExamId = GaitManager().getLastExamId(gaits: gaits, motionSensors: motionSensors) + 1
                     recordManager.start(
                         userId: userId, examId: nextExamId, examTypeId: examTypeId,
@@ -67,7 +67,7 @@ struct GaitExerciseView: View {
                         if recordManager.gaitCount == 0 {
                             showAlert2 = true
                         } else {
-                            speechText(text: "ウォーキングを終了します")
+                            speechText(text: "エクササイズを終了します")
                             isNextButton = true
                         }
                     } ){
@@ -76,7 +76,7 @@ struct GaitExerciseView: View {
                     .secondary()
                     .alert("歩行データはありません。\n設定画面に戻ります。", isPresented: $showAlert2) {
                         Button("OK") {
-                            speechText(text: "ウォーキングを終了します")
+                            speechText(text: "エクササイズを終了します")
                             presentationMode.wrappedValue.dismiss()
                         }
                     }
@@ -116,7 +116,7 @@ struct GaitExerciseView: View {
                     .primary()
                     .onAppear {
                         timer.upstream.connect().cancel()
-                        speechText(text: "ウォーキングを終了します")
+                        speechText(text: "エクササイズを終了します")
                         recordManager.stop()
                     }
                     .alert("歩行データがありません", isPresented: $showAlert2) {

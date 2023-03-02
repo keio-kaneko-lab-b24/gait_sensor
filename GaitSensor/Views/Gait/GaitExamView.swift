@@ -70,7 +70,7 @@ struct GaitExamView: View {
                         if recordManager.gaitCount == 0 {
                             showAlert2 = true
                         } else {
-                            speechText(text: "ウォーキングを終了します")
+                            speechText(text: "エクササイズを終了します")
                             isNextButton = true
                         }
                     } ){

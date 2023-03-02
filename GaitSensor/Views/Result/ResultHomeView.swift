@@ -15,13 +15,13 @@ struct ResultHomeView: View {
     var body: some View {
         List {
             Section {
-                // ウォーキングの結果画面
+                // エクササイズの結果画面
                 NavigationLink {
                     ResultListView(examTypeId: 0)
                 } label: {
                     HStack {
                         Image(systemName: "chart.bar.fill").icon()
-                        Text("ウォーキングの記録")
+                        Text("エクササイズの記録")
                     }
                 }
                 

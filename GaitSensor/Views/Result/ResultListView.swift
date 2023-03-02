@@ -19,7 +19,7 @@ struct ResultListView: View {
             // 消費エネルギー
             VStack {
                 if examTypeId == 0 {
-                    Text("ウォーキングの記録").title()
+                    Text("エクササイズの記録").title()
                 } else if examTypeId == 1 {
                     Text("歩行機能検査の記録").title()
                 }

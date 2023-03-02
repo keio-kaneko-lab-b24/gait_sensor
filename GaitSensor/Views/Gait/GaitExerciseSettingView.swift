@@ -11,7 +11,7 @@ struct GaitExerciseSettingView: View {
     var body: some View {
         VStack {
             VStack {
-                Text("ウォーキング").title()
+                Text("エクササイズ").title()
                 Text("転倒には十分に留意してください。\n音声ガイドを有効にするにはマナーモードを解除してください。").explain()
             }.padding(.top)
             
@@ -39,7 +39,7 @@ struct GaitExerciseSettingView: View {
                             isSelectedButton.toggle()
                         }
                     } ){
-                        Text("ウォーキング開始").button()
+                        Text("エクササイズ開始").button()
                     }
                     .primary()
                     .padding()
