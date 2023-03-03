@@ -24,22 +24,30 @@ struct ResultSequenceView: View {
                     VStack {
                         Text("累計歩数").title2()
                         Text("どれだけの歩数歩いたか").explain()
-                        HStack {
-                            Text("\(totalSteps(gaits: gaitsSorted))").large()
-                            Text("歩")
-                        }
+                        Chart(gaitsSorted.suffix(6)) { gait in
+                            BarMark (
+                                x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
+                                y: .value("歩数", Double(gait.gait_steps))
+                            )
+                            .foregroundStyle(Color.pink.opacity(0.85))
+                            .cornerRadius(10)
+                        }.frame(height: 180)
                     }.padding()
                 }.card()
                 
                 // 消費エネルギー
                 VStack {
                     VStack {
-                        Text("累計消費エネルギー").title2()
-                        Text("どれだけのエネルギーを消費したか").explain()
-                        HStack {
-                            Text("\(Int(totalCalory(gaits: gaitsSorted)))").large()
-                            Text("kcal")
-                        }
+                        Text("消費エネルギー").title2()
+                        Text("何kcal消費したか").explain()
+                        Chart(gaitsSorted.suffix(6)) { gait in
+                            BarMark (
+                                x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
+                                y: .value("消費エネルギー", Double(gait.gait_energy))
+                            )
+                            .foregroundStyle(Color.pink.opacity(0.85))
+                            .cornerRadius(10)
+                        }.frame(height: 180)
                     }.padding()
                 }.card()
             }
