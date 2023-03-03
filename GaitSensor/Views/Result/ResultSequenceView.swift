@@ -5,6 +5,7 @@ struct ResultSequenceView: View {
     let gaits: [Gait]
     var examTypeId: Int
     var showEnergy: Bool = false
+    @State var isSelectedButton = false
     
     var body: some View {
         let gaitsSorted = gaits.sorted(by: {$0.exam_id < $1.exam_id})
@@ -22,9 +23,9 @@ struct ResultSequenceView: View {
                 // 歩数
                 VStack {
                     VStack {
-                        Text("累計歩数").title2()
-                        Text("どれだけの歩数歩いたか").explain()
-                        Chart(gaitsSorted.suffix(6)) { gait in
+                        Text("歩数").title2()
+                        Text("何歩歩いたか").explain()
+                        Chart(gaitsSorted.suffix(7)) { gait in
                             BarMark (
                                 x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
                                 y: .value("歩数", Double(gait.gait_steps))
@@ -40,7 +41,7 @@ struct ResultSequenceView: View {
                     VStack {
                         Text("消費エネルギー").title2()
                         Text("何kcal消費したか").explain()
-                        Chart(gaitsSorted.suffix(6)) { gait in
+                        Chart(gaitsSorted.suffix(7)) { gait in
                             BarMark (
                                 x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
                                 y: .value("消費エネルギー", Double(gait.gait_energy))
@@ -57,7 +58,7 @@ struct ResultSequenceView: View {
                 VStack {
                     Text("歩行速度").title2()
                     Text("1分あたりに何mの速度で歩いたか").explain()
-                    Chart(gaitsSorted.suffix(6)) { gait in
+                    Chart(gaitsSorted.suffix(7)) { gait in
                         BarMark (
                             x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
                             y: .value("歩行速度", Double(gait.gait_speed) * 60)
@@ -73,7 +74,7 @@ struct ResultSequenceView: View {
                 VStack {
                     Text("歩幅").title2()
                     Text("1歩あたりの歩幅は何mか").explain()
-                    Chart(gaitsSorted.suffix(6)) { gait in
+                    Chart(gaitsSorted.suffix(7)) { gait in
                         BarMark (
                             x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
                             y: .value("歩幅", Double(gait.gait_stride))
@@ -89,7 +90,7 @@ struct ResultSequenceView: View {
                 VStack {
                     Text("歩行率").title2()
                     Text("1分あたり何歩のペースで歩いたか").explain()
-                    Chart(gaitsSorted.suffix(6)) { gait in
+                    Chart(gaitsSorted.suffix(7)) { gait in
                         BarMark (
                             x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
                             y: .value("歩幅", 60 * Double(gait.gait_steps) / ((Double(gait.gait_period) / 1000)))
@@ -99,8 +100,24 @@ struct ResultSequenceView: View {
                     }.frame(height: 180)
                 }.padding()
             }.card()
-            
-        }.bgColor().toolbar(.hidden, for: .tabBar)
+        }
+        .bgColor()
+        .toolbar {
+            ToolbarItem {
+                Button {
+                    isSelectedButton.toggle()
+                } label: {
+                    HStack{
+                        Text("日時で表示").toolbar()
+                    }
+                }
+            }
+        }
+        
+        NavigationLink(
+            destination: ResultSequenceDailyView(
+                gaits: gaits, examTypeId: examTypeId, showEnergy: showEnergy),
+            isActive: $isSelectedButton) { EmptyView() }
     }
     
     func idString(gait: Gait, gaits: [Gait]) -> String {

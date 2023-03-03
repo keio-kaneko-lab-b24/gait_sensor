@@ -34,6 +34,7 @@
 		17B7FD972967182D00EB8EDC /* SettingDeveloperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7FD962967182D00EB8EDC /* SettingDeveloperView.swift */; };
 		17B7FD992967ACC200EB8EDC /* GaitHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7FD982967ACC200EB8EDC /* GaitHome.swift */; };
 		17B7FD9C2967B50C00EB8EDC /* SettingHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7FD9B2967B50C00EB8EDC /* SettingHomeView.swift */; };
+		17EE5F4229B1E24F00C70D2A /* ResultSequenceDailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EE5F4129B1E24F00C70D2A /* ResultSequenceDailyView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -66,6 +67,7 @@
 		17B7FD962967182D00EB8EDC /* SettingDeveloperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDeveloperView.swift; sourceTree = "<group>"; };
 		17B7FD982967ACC200EB8EDC /* GaitHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaitHome.swift; sourceTree = "<group>"; };
 		17B7FD9B2967B50C00EB8EDC /* SettingHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHomeView.swift; sourceTree = "<group>"; };
+		17EE5F4129B1E24F00C70D2A /* ResultSequenceDailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSequenceDailyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -165,6 +167,7 @@
 				175FECAF29631DDA00E19831 /* ResultListView.swift */,
 				175FECB3296326CF00E19831 /* ResultView.swift */,
 				175FECE02963DA6500E19831 /* ResultSequenceView.swift */,
+				17EE5F4129B1E24F00C70D2A /* ResultSequenceDailyView.swift */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -284,6 +287,7 @@
 				175FECB4296326CF00E19831 /* ResultView.swift in Sources */,
 				175FECEB2966797100E19831 /* View.swift in Sources */,
 				175FECBA296328A600E19831 /* GaitExerciseSettingView.swift in Sources */,
+				17EE5F4229B1E24F00C70D2A /* ResultSequenceDailyView.swift in Sources */,
 				175FEC892962D3EF00E19831 /* ContentView.swift in Sources */,
 				175FECBC296329AE00E19831 /* GaitExamView.swift in Sources */,
 				175FECE12963DA6500E19831 /* ResultSequenceView.swift in Sources */,

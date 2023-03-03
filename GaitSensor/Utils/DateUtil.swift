@@ -83,3 +83,33 @@ func timeToString(time: Int) -> String {
     }
     return String("\(minutesString):\(secondsString)")
 }
+
+/*
+ 2つのDateが同じ日付を確認する
+ */
+func sameDays(date1: Date, date2: Date) -> Bool {
+    let day1 = Calendar.current.dateComponents([.year, .month, .day], from: date1)
+    let day2 = Calendar.current.dateComponents([.year, .month, .day], from: date2)
+    return day1 == day2
+}
+
+/*
+ 過去N日間の日付をDayStruct型として取得する
+ */
+func lastDays(n: Int) -> [DayStruct] {
+    let anchor = Date()
+    let calendar = Calendar.current
+    var days = [DayStruct]()
+
+    for dayOffset in 0...n {
+        if let date = calendar.date(byAdding: .day, value: -1*dayOffset, to: anchor) {
+            days.append(DayStruct(day: date))
+        }
+    }
+    return days
+}
+
+struct DayStruct: Identifiable {
+    var day: Date
+    var id = UUID()
+}
