@@ -9,6 +9,7 @@ struct ResultHomeView: View {
     var motionSensors: FetchedResults<MotionSensor>
     
     @State var showAlert = false
+    @State var showAlert2 = false
     let gaitManager = GaitManager()
     let fileManager = UserFileManager()
     
@@ -36,26 +37,35 @@ struct ResultHomeView: View {
                 }
                 
                 Button {
-                    let gaitText = gaitManager.gaitToCsv(gaits: gaits)
-                    fileManager.saveFile(data: gaitText, fileName: "gait.csv")
-                    let motionSensorText = gaitManager.motionSensorToCsv(motionSensors: motionSensors)
-                    fileManager.saveFile(data: motionSensorText, fileName: "motionSensor.csv")
                     showAlert = true
                 } label: {
                     HStack {
                         Image(systemName: "square.and.arrow.up.fill").icon()
                         Text("記録の書き出し")
                     }
-                }.alert("運動記録を書き出しました", isPresented: $showAlert) {
+                }.alert("運動記録を書き出しますか？", isPresented: $showAlert) {
+                    Button("Cancel") {}
+                    Button("OK") {
+                        toCsv()
+                        showAlert2 = true
+                    }
+                }.alert("運動記録を書き出しました", isPresented: $showAlert2) {
                     Button("OK") { /* Do Nothing */}
                 } message: {
                     Text("「ファイルアプリ」>「このiPhone内」>「歩行アプリ」からファイルを確認できます。")
                 }
-
             }
             .navigationBarTitle(Text("記録"), displayMode: .inline)
             .navigationBarBackButtonHidden(true)
         }.bgColor()
+    }
+    
+    func toCsv() {
+        let date = currentDateString()
+        let gaitText = gaitManager.gaitToCsv(gaits: gaits)
+        fileManager.saveFile(data: gaitText, fileName: "gait_\(date).csv")
+        let motionSensorText = gaitManager.motionSensorToCsv(motionSensors: motionSensors)
+        fileManager.saveFile(data: motionSensorText, fileName: "sensor_\(date).csv")
     }
 }
 

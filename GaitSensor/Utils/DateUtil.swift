@@ -54,6 +54,16 @@ func unixtimeToDateString(unixtimeMillis: Int, short: Bool = false, mini: Bool =
 }
 
 /*
+ 現在時刻をyyyyMMddHHmmssで取得する
+ */
+func currentDateString() -> String {
+    let dateFormatter = DateFormatter()
+    dateFormatter.locale = Locale(identifier: "ja_JP")
+    dateFormatter.dateFormat = "yyyyMMddHHmmss"
+    return dateFormatter.string(from: Date())
+}
+
+/*
  time（秒）からDateStringへ変換する
  */
 func timeToString(time: Int) -> String {
