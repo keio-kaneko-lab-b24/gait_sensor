@@ -109,22 +109,6 @@ struct ResultSequenceView: View {
         }
         return "ID \(gait.exam_id)"
     }
-    
-    func totalCalory(gaits: [Gait]) -> Double {
-        var totalCalory: Double = 0
-        for gait in gaits {
-            totalCalory += gait.gait_energy
-        }
-        return totalCalory
-    }
-    
-    func totalSteps(gaits: [Gait]) -> Int {
-        var totalSteps: Int = 0
-        for gait in gaits {
-            totalSteps += Int(gait.gait_steps)
-        }
-        return totalSteps
-    }
 }
 
 struct ResultSequenceView_Previews: PreviewProvider {
