@@ -40,7 +40,7 @@ struct ResultSequenceView: View {
                 VStack {
                     VStack {
                         Text("消費エネルギー").title2()
-                        Text("何kcal消費したか").explain()
+                        Text("何kcal消費したか（kcal）").explain()
                         Chart(gaitsSorted.suffix(7)) { gait in
                             BarMark (
                                 x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
@@ -57,7 +57,7 @@ struct ResultSequenceView: View {
             VStack {
                 VStack {
                     Text("歩行速度").title2()
-                    Text("1分あたりに何mの速度で歩いたか").explain()
+                    Text("1分あたりに何mの速度で歩いたか（m/分）").explain()
                     Chart(gaitsSorted.suffix(7)) { gait in
                         BarMark (
                             x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
@@ -73,7 +73,7 @@ struct ResultSequenceView: View {
             VStack {
                 VStack {
                     Text("歩幅").title2()
-                    Text("1歩あたりの歩幅は何mか").explain()
+                    Text("1歩あたりの歩幅は何mか（m）").explain()
                     Chart(gaitsSorted.suffix(7)) { gait in
                         BarMark (
                             x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
@@ -89,7 +89,7 @@ struct ResultSequenceView: View {
             VStack {
                 VStack {
                     Text("歩行率").title2()
-                    Text("1分あたり何歩のペースで歩いたか").explain()
+                    Text("1分あたり何歩のペースで歩いたか（歩/分）").explain()
                     Chart(gaitsSorted.suffix(7)) { gait in
                         BarMark (
                             x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
