@@ -4,9 +4,10 @@ import Charts
 struct ResultSequenceView: View {
     let gaits: [Gait]
     var examTypeId: Int
+    var showEnergy: Bool = false
     
     var body: some View {
-        var gaitsSorted = gaits.sorted(by: {$0.exam_id < $1.exam_id})
+        let gaitsSorted = gaits.sorted(by: {$0.exam_id < $1.exam_id})
         ScrollView(.vertical) {
             
             VStack {
@@ -17,36 +18,38 @@ struct ResultSequenceView: View {
                 }
             }.padding()
             
-            // 歩数
-            VStack {
+            if showEnergy {
+                // 歩数
                 VStack {
-                    Text("累計歩数").title2()
-                    Text("どれだけの歩数歩いたか").explain()
-                    HStack {
-                        Text("\(totalSteps(gaits: gaitsSorted))").large()
-                        Text("歩")
-                    }
-                }.padding()
-            }.card()
-            
-            // 消費エネルギー
-            VStack {
+                    VStack {
+                        Text("累計歩数").title2()
+                        Text("どれだけの歩数歩いたか").explain()
+                        HStack {
+                            Text("\(totalSteps(gaits: gaitsSorted))").large()
+                            Text("歩")
+                        }
+                    }.padding()
+                }.card()
+                
+                // 消費エネルギー
                 VStack {
-                    Text("累計消費エネルギー").title2()
-                    Text("どれだけのエネルギーを消費したか").explain()
-                    HStack {
-                        Text("\(Int(totalCalory(gaits: gaitsSorted)))").large()
-                        Text("kcal")
-                    }
-                }.padding()
-            }.card()
+                    VStack {
+                        Text("累計消費エネルギー").title2()
+                        Text("どれだけのエネルギーを消費したか").explain()
+                        HStack {
+                            Text("\(Int(totalCalory(gaits: gaitsSorted)))").large()
+                            Text("kcal")
+                        }
+                    }.padding()
+                }.card()
+            }
             
             // 歩行速度
             VStack {
                 VStack {
                     Text("歩行速度").title2()
                     Text("1分あたりに何mの速度で歩いたか").explain()
-                    Chart(gaitsSorted.suffix(10)) { gait in
+                    Chart(gaitsSorted.suffix(6)) { gait in
                         BarMark (
                             x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
                             y: .value("歩行速度", Double(gait.gait_speed) * 60)
@@ -62,7 +65,7 @@ struct ResultSequenceView: View {
                 VStack {
                     Text("歩幅").title2()
                     Text("1歩あたりの歩幅は何mか").explain()
-                    Chart(gaitsSorted.suffix(10)) { gait in
+                    Chart(gaitsSorted.suffix(6)) { gait in
                         BarMark (
                             x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
                             y: .value("歩幅", Double(gait.gait_stride))
@@ -78,7 +81,7 @@ struct ResultSequenceView: View {
                 VStack {
                     Text("歩行率").title2()
                     Text("1分あたり何歩のペースで歩いたか").explain()
-                    Chart(gaitsSorted.suffix(10)) { gait in
+                    Chart(gaitsSorted.suffix(6)) { gait in
                         BarMark (
                             x: .value("ID", idString(gait: gait, gaits: gaitsSorted)),
                             y: .value("歩幅", 60 * Double(gait.gait_steps) / ((Double(gait.gait_period) / 1000)))

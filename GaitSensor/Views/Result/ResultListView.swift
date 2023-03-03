@@ -60,7 +60,7 @@ struct ResultListView: View {
         NavigationLink(
             destination: ResultSequenceView(
                 gaits: lastGaitsForExamId(gaits: gaits, examTypeId: examTypeId),
-                examTypeId: examTypeId),
+                examTypeId: examTypeId, showEnergy: (examTypeId == 0)),
             isActive: $isSelectedButton) { EmptyView() }
     }
     
