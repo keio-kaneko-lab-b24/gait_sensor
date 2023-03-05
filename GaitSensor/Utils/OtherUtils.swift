@@ -4,7 +4,6 @@ func devideId() -> String {
     return UIDevice.current.identifierForVendor!.uuidString
 }
 
-
 /*
  カロリーの計算
  消費カロリー = METs × 体重(kg) × 時間(h) × 1.05

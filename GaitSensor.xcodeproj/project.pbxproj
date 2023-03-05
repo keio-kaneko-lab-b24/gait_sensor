@@ -34,7 +34,9 @@
 		17B7FD972967182D00EB8EDC /* SettingDeveloperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7FD962967182D00EB8EDC /* SettingDeveloperView.swift */; };
 		17B7FD992967ACC200EB8EDC /* GaitHome.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7FD982967ACC200EB8EDC /* GaitHome.swift */; };
 		17B7FD9C2967B50C00EB8EDC /* SettingHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17B7FD9B2967B50C00EB8EDC /* SettingHomeView.swift */; };
-		17EE5F4229B1E24F00C70D2A /* ResultSequenceDailyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EE5F4129B1E24F00C70D2A /* ResultSequenceDailyView.swift */; };
+		17EE5F4229B1E24F00C70D2A /* ResultSequenceUnitView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EE5F4129B1E24F00C70D2A /* ResultSequenceUnitView.swift */; };
+		17EE5F4729B4883D00C70D2A /* ResultSequenceEachView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EE5F4629B4883D00C70D2A /* ResultSequenceEachView.swift */; };
+		17EE5F4929B48EBB00C70D2A /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 17EE5F4829B48EBB00C70D2A /* Result.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -67,7 +69,9 @@
 		17B7FD962967182D00EB8EDC /* SettingDeveloperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingDeveloperView.swift; sourceTree = "<group>"; };
 		17B7FD982967ACC200EB8EDC /* GaitHome.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GaitHome.swift; sourceTree = "<group>"; };
 		17B7FD9B2967B50C00EB8EDC /* SettingHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingHomeView.swift; sourceTree = "<group>"; };
-		17EE5F4129B1E24F00C70D2A /* ResultSequenceDailyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSequenceDailyView.swift; sourceTree = "<group>"; };
+		17EE5F4129B1E24F00C70D2A /* ResultSequenceUnitView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSequenceUnitView.swift; sourceTree = "<group>"; };
+		17EE5F4629B4883D00C70D2A /* ResultSequenceEachView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultSequenceEachView.swift; sourceTree = "<group>"; };
+		17EE5F4829B48EBB00C70D2A /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -167,7 +171,8 @@
 				175FECAF29631DDA00E19831 /* ResultListView.swift */,
 				175FECB3296326CF00E19831 /* ResultView.swift */,
 				175FECE02963DA6500E19831 /* ResultSequenceView.swift */,
-				17EE5F4129B1E24F00C70D2A /* ResultSequenceDailyView.swift */,
+				17EE5F4129B1E24F00C70D2A /* ResultSequenceUnitView.swift */,
+				17EE5F4629B4883D00C70D2A /* ResultSequenceEachView.swift */,
 			);
 			path = Result;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 				175FECE629666EFA00E19831 /* Button.swift */,
 				175FECE829666F4100E19831 /* Text.swift */,
 				175FECEF296690D700E19831 /* Image.swift */,
+				17EE5F4829B48EBB00C70D2A /* Result.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -277,6 +283,7 @@
 			files = (
 				175FEC9B2962DA8300E19831 /* Persistent.swift in Sources */,
 				175FECF0296690D700E19831 /* Image.swift in Sources */,
+				17EE5F4729B4883D00C70D2A /* ResultSequenceEachView.swift in Sources */,
 				175FECA12962DE2F00E19831 /* GaitRecordManager.swift in Sources */,
 				175FECC0296333B900E19831 /* GaitExerciseView.swift in Sources */,
 				17B7FD992967ACC200EB8EDC /* GaitHome.swift in Sources */,
@@ -287,11 +294,12 @@
 				175FECB4296326CF00E19831 /* ResultView.swift in Sources */,
 				175FECEB2966797100E19831 /* View.swift in Sources */,
 				175FECBA296328A600E19831 /* GaitExerciseSettingView.swift in Sources */,
-				17EE5F4229B1E24F00C70D2A /* ResultSequenceDailyView.swift in Sources */,
+				17EE5F4229B1E24F00C70D2A /* ResultSequenceUnitView.swift in Sources */,
 				175FEC892962D3EF00E19831 /* ContentView.swift in Sources */,
 				175FECBC296329AE00E19831 /* GaitExamView.swift in Sources */,
 				175FECE12963DA6500E19831 /* ResultSequenceView.swift in Sources */,
 				175FECA62962E10500E19831 /* DateUtil.swift in Sources */,
+				17EE5F4929B48EBB00C70D2A /* Result.swift in Sources */,
 				175FEC932962D3F100E19831 /* GaitSensor.xcdatamodeld in Sources */,
 				175FECE42964490700E19831 /* FileManager.swift in Sources */,
 				175FECAE29631DA300E19831 /* ResultHomeView.swift in Sources */,

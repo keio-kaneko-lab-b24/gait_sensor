@@ -4,6 +4,36 @@ import Foundation
 
 
 /*
+ https://stackoverflow.com/questions/43663622/is-a-date-in-same-week-month-year-of-another-date-in-swift
+ */
+extension Date {
+
+    func isEqual(to date: Date, toGranularity component: Calendar.Component, in calendar: Calendar = .current) -> Bool {
+        calendar.isDate(self, equalTo: date, toGranularity: component)
+    }
+
+    func isInSameYear(as date: Date) -> Bool { isEqual(to: date, toGranularity: .year) }
+    func isInSameMonth(as date: Date) -> Bool { isEqual(to: date, toGranularity: .month) && isEqual(to: date, toGranularity: .year) }
+    func isInSameWeek(as date: Date) -> Bool { isEqual(to: date, toGranularity: .weekOfYear) && isEqual(to: date, toGranularity: .year) }
+    func isInSameDay(as date: Date) -> Bool {
+        Calendar.current.isDate(self, inSameDayAs: date) &&
+        isEqual(to: date, toGranularity: .month) &&
+        isEqual(to: date, toGranularity: .year)
+    }
+
+    var isInThisYear:  Bool { isInSameYear(as: Date()) }
+    var isInThisMonth: Bool { isInSameMonth(as: Date()) }
+    var isInThisWeek:  Bool { isInSameWeek(as: Date()) }
+
+    var isInYesterday: Bool { Calendar.current.isDateInYesterday(self) }
+    var isInToday:     Bool { Calendar.current.isDateInToday(self) }
+    var isInTomorrow:  Bool { Calendar.current.isDateInTomorrow(self) }
+
+    var isInTheFuture: Bool { self > Date() }
+    var isInThePast:   Bool { self < Date() }
+}
+
+/*
  unixtime（ミリ秒）を取得する
  */
 func unixtime() -> Int {
@@ -85,31 +115,41 @@ func timeToString(time: Int) -> String {
 }
 
 /*
- 2つのDateが同じ日付を確認する
+ 過去N日前（N週間前、N月前）まの日付をDayStruct型として取得する
  */
-func sameDays(date1: Date, date2: Date) -> Bool {
-    let day1 = Calendar.current.dateComponents([.year, .month, .day], from: date1)
-    let day2 = Calendar.current.dateComponents([.year, .month, .day], from: date2)
-    return day1 == day2
-}
-
-/*
- 過去N日間の日付をDayStruct型として取得する
- */
-func lastDays(n: Int) -> [DayStruct] {
+func lastDates(n: Int, unit: Calendar.Component) -> [DateStruct] {
     let anchor = Date()
     let calendar = Calendar.current
-    var days = [DayStruct]()
-
-    for dayOffset in 0...n {
-        if let date = calendar.date(byAdding: .day, value: -1*dayOffset, to: anchor) {
-            days.append(DayStruct(day: date))
+    var dates = [DateStruct]()
+    
+    if unit == .day {
+        for dayOffset in 0...n {
+            if let date = calendar.date(byAdding: .day, value: -1*dayOffset, to: anchor) {
+                dates.append(DateStruct(date: date))
+            }
         }
     }
-    return days
+    
+    if unit == .weekOfYear {
+        for dayOffset in 0...n {
+            if let date = calendar.date(byAdding: .day, value: -7*dayOffset, to: anchor) {
+                dates.append(DateStruct(date: date))
+            }
+        }
+    }
+    
+    if unit == .month {
+        for dayOffset in 0...n {
+            if let date = calendar.date(byAdding: .month, value: -1*dayOffset, to: anchor) {
+                dates.append(DateStruct(date: date))
+            }
+        }
+    }
+    
+    return dates
 }
 
-struct DayStruct: Identifiable {
-    var day: Date
+struct DateStruct: Identifiable {
+    var date: Date
     var id = UUID()
 }
