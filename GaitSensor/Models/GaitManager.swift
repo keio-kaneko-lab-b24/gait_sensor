@@ -128,7 +128,7 @@ struct GaitManager {
      MotionSensorをCSV形式へ変換
      */
     func motionSensorToCsv(motionSensors: FetchedResults<MotionSensor>) -> String {
-        var text = "exam_id,unixtime,acceleration_x,acceleration_y,acceleration_z,rotation_x,rotation_y,rotation_z,gravity_x,rotation_y,rotation_z,pitch,yaw,roll\n"
+        var text = "exam_id,unixtime,acceleration_x,acceleration_y,acceleration_z,rotation_x,rotation_y,rotation_z,gravity_x,gravity_y,gravity_z,pitch,yaw,roll\n"
         for sensor in motionSensors {
             text += "\(sensor.exam_id),\(sensor.unixtime),"
             text += "\(sensor.acceleration_x),\(sensor.acceleration_y),\(sensor.acceleration_z),"
